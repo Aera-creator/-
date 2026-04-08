@@ -38,6 +38,28 @@ export function recommendPOI({ query, category, interests, k = 5 }) {
   return scored.map((r) => ({ ...r.item, score: r.score.toFixed(1) }));
 }
 
+export function getPOIDetail(idOrName) {
+  const poi = pois.find((item) => item.id === idOrName || item.name === idOrName);
+  if (!poi) return null;
+
+  const relatedDiaries = diaries
+    .filter((item) => item.destination.includes(poi.name) || item.destination.includes(poi.area) || item.body.includes(poi.name))
+    .slice(0, 4);
+
+  const nearbyFoods = foods
+    .filter((item) => item.near.includes(poi.name) || item.near.includes(poi.area))
+    .slice(0, 4);
+
+  const nearbyServices = graph.nodes().includes(poi.name) ? queryFacilities({ origin: poi.name, category: '' }).slice(0, 4) : [];
+
+  return {
+    poi,
+    relatedDiaries,
+    nearbyFoods,
+    nearbyServices
+  };
+}
+
 function resolveWeight(strategy, transport = 'walk', crowdFactor = 1.0) {
   return (edge) => {
     if (transport === 'walk' && edge.walkOnly === false && strategy === 'indoor') {
@@ -90,6 +112,20 @@ export function searchDiaries({ keyword, sortBy = 'heat' }) {
     .sort((a, b) => (sortBy === 'rating' ? b.rating - a.rating : b.heat - a.heat));
 }
 
+export function getDiaryDetail(id) {
+  const diary = diaries.find((item) => item.id === id);
+  if (!diary) return null;
+
+  const relatedFoods = foods.filter((item) => diary.body.includes(item.name) || diary.destination.includes(item.near)).slice(0, 4);
+  const relatedPois = pois.filter((item) => diary.body.includes(item.name) || diary.destination.includes(item.area)).slice(0, 4);
+
+  return {
+    diary,
+    relatedFoods,
+    relatedPois
+  };
+}
+
 export function compressDiary(text) {
   return pseudoHuffmanCompress(text);
 }
@@ -108,6 +144,20 @@ export function recommendFood({ query, cuisine, near, k = 5 }) {
   });
 
   return ranked.map((r) => ({ ...r.item, score: r.score.toFixed(1) }));
+}
+
+export function getFoodDetail(idOrName) {
+  const food = foods.find((item) => item.id === idOrName || item.name === idOrName);
+  if (!food) return null;
+
+  const nearbyPois = pois.filter((item) => item.name.includes(food.near) || item.area.includes(food.near) || food.near.includes(item.area)).slice(0, 4);
+  const relatedDiaries = diaries.filter((item) => item.body.includes(food.name) || item.destination.includes(food.near)).slice(0, 4);
+
+  return {
+    food,
+    nearbyPois,
+    relatedDiaries
+  };
 }
 
 export function concertPlan({ venue, timeLimitMin }) {
@@ -154,6 +204,17 @@ export function teamCollab({ currentNode }) {
     voted,
     deviation,
     alert: deviation.deviated ? '成员偏离路线，建议执行一键重规划。' : '队伍路线正常。'
+  };
+}
+
+export function getTeamRoom(currentNode = teamState.plannedPath[1]) {
+  const collab = teamCollab({ currentNode });
+  return {
+    ...collab,
+    roomName: '城市出行小队',
+    nextStops: collab.plannedPath.slice(1),
+    activeMembers: teamState.members.slice(0, 2),
+    pendingMembers: teamState.members.slice(2)
   };
 }
 

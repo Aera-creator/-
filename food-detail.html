@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>餐厅详情</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="food-detail">
+    <header class="topbar"><div class="brand"><span class="brand-mark">A</span><div><h1>旅迹 Atlas</h1><p>个性化旅游系统</p></div></div><div class="account"><span class="avatar">AL</span><div><b>Aera Lin</b><span>普通会员 · Lv.3</span></div></div></header>
+    <div class="layout">
+      <aside class="sidebar"><div class="side-title">系统模块</div><nav class="nav"><a href="./index.html" data-page="home">首页</a><a href="./recommend.html" data-page="recommend">发现目的地</a><a href="./route.html" data-page="route">行程规划</a><a href="./facility.html" data-page="facility">周边服务</a><a href="./diary.html" data-page="diary">游记社区</a><a href="./food.html" data-page="food">附近美食</a><a href="./concert.html" data-page="concert">演出行程</a><a href="./team.html" data-page="team">同行小队</a></nav></aside>
+      <main class="content">
+        <section class="page-hero module-hero food-hero">
+          <div>
+            <p class="hero-kicker">餐厅详情</p>
+            <h2 id="food-detail-name">餐厅加载中</h2>
+            <p class="sub" id="food-detail-meta">--</p>
+            <p id="food-detail-near" class="subtle">--</p>
+            <p id="food-detail-rating" class="subtle">--</p>
+          </div>
+          <div class="hero-actions">
+            <a href="./food.html" class="hero-link ghost-link">返回附近美食</a>
+            <a href="./route.html" class="hero-link">回到行程规划</a>
+          </div>
+        </section>
+
+        <div class="workspace-grid">
+          <div class="workspace-main stack">
+            <section class="panel-card">
+              <div class="panel-head"><div><h3>适合顺路去的地点</h3><p class="subtle">方便把用餐安排放回当天路线</p></div></div>
+              <div id="food-detail-output" class="result empty-state"><p>正在整理附近地点。</p></div>
+            </section>
+          </div>
+          <aside class="workspace-side stack">
+            <section class="panel-card">
+              <div class="panel-head"><div><h3>相关游记</h3><p class="subtle">看看别人是在哪种场景下提到这家餐厅</p></div></div>
+              <div id="food-related-diaries" class="result empty-state"><p>正在加载关联游记。</p></div>
+            </section>
+          </aside>
+        </div>
+      </main>
+    </div>
+    <script type="module" src="./src/ui/pages.js"></script>
+  </body>
+</html>

@@ -1,6 +1,6 @@
 # 个性化旅游系统
 
-一个面向最终用户体验的旅游产品原型，当前以前端静态站点形式运行，适合直接上传到 GitHub 并通过 GitHub Pages 分享演示效果。
+一个面向最终用户体验的旅游产品原型，当前已经具备本地完整前后端运行能力，同时也保留了适合 GitHub Pages 展示的静态前端结构。
 
 ## 项目定位
 
@@ -18,10 +18,36 @@
 8. 同行小队
 9. 账户中心
 10. 旅行档案
+11. 地点详情页
+12. 游记详情页
+13. 餐厅详情页
+14. 小队房间页
 
 当前数据为本地模拟数据，用于验证交互流程、页面组织和模块联动。后续可继续接入地图 API、POI API 和数据库。
 
 ## 本地运行
+
+### 方式一：完整前后端模式
+
+在项目目录执行：
+
+```bash
+npm run dev
+```
+
+然后访问：
+
+```text
+http://127.0.0.1:3000/index.html
+```
+
+这个模式下：
+
+1. 页面由 Node 服务提供
+2. 前端优先调用后端 API
+3. 后端继续使用本地模拟数据
+
+### 方式二：仅前端静态预览
 
 在项目目录执行：
 
@@ -35,14 +61,38 @@ python3 -m http.server 8080
 http://localhost:8080/index.html
 ```
 
+## 后端原型
+
+项目中已经新增后端骨架，并且前端已接入 `apiClient`，能够优先通过后端接口获取数据，在接口不可用时自动回退到本地模拟逻辑。
+
+启动方式：
+
+```bash
+npm run dev
+```
+
+默认地址：
+
+```text
+http://127.0.0.1:3000
+```
+
+后端入口文件：
+
+- `backend/server.js`
+
+后端说明：
+
+- `backend/README.md`
+
 ## 适合 GitHub 的原因
 
-本项目当前是纯静态站点：
+本项目仍然适合发布到 GitHub Pages，因为：
 
-1. 不依赖后端服务
+1. 前端页面仍是纯静态文件
 2. 不依赖数据库
 3. 不依赖构建工具
-4. 推到 GitHub 后可以直接部署到 GitHub Pages
+4. 推到 GitHub 后可以直接部署到 GitHub Pages 做界面演示
 
 仓库中已经包含：
 
@@ -97,6 +147,10 @@ git push -u origin main
 ├── team.html
 ├── profile.html
 ├── styles.css
+├── package.json
+├── backend
+│   ├── README.md
+│   └── server.js
 ├── src
 │   ├── core
 │   │   ├── algorithms.js
@@ -104,6 +158,7 @@ git push -u origin main
 │   ├── data
 │   │   └── sampleData.js
 │   ├── services
+│   │   ├── apiClient.js
 │   │   └── systemService.js
 │   └── ui
 │       └── pages.js
@@ -114,6 +169,6 @@ git push -u origin main
 
 ## 后续接入建议
 
-1. 在 `src/services` 中新增真实 API 适配层
+1. 把 `backend/server.js` 继续拆为 controller / service / repository
 2. 把内嵌示意地图替换成 Google Maps 或高德地图
-3. 为“游记详情页”“餐厅详情页”“小队房间页”继续补二级页面
+3. 接入真实数据库与外部 API

@@ -2,7 +2,11 @@ import {
   buildProfile,
   compressDiary,
   concertPlan,
+  getDiaryDetail,
+  getFoodDetail,
+  getPOIDetail,
   getSystemMeta,
+  getTeamRoom,
   planMultiRoute,
   planSingleRoute,
   queryFacilities,
@@ -10,7 +14,7 @@ import {
   recommendPOI,
   searchDiaries,
   teamCollab
-} from '../services/systemService.js';
+} from '../services/apiClient.js';
 
 const state = {
   interests: '夜景 演唱会 美食 文化'
@@ -36,7 +40,7 @@ init();
 function init() {
   bindCommon();
   const page = document.body.dataset.page;
-  if (page === 'home') renderHome();
+  if (page === 'home') void renderHome();
   if (page === 'account') bindAccount();
   if (page === 'recommend') bindRecommend();
   if (page === 'route') bindRoute();
@@ -46,6 +50,10 @@ function init() {
   if (page === 'concert') bindConcert();
   if (page === 'profile') bindProfile();
   if (page === 'team') bindTeam();
+  if (page === 'poi-detail') bindPoiDetail();
+  if (page === 'diary-detail') bindDiaryDetail();
+  if (page === 'food-detail') bindFoodDetail();
+  if (page === 'team-room') bindTeamRoom();
 }
 
 function bindCommon() {
@@ -78,8 +86,8 @@ function setupAccountEntry() {
   `;
 }
 
-function renderHome() {
-  const meta = getSystemMeta();
+async function renderHome() {
+  const meta = await getSystemMeta();
   setHtml(
     '#home-stats',
     `
@@ -140,8 +148,8 @@ function bindRecommend() {
     });
   });
 
-  document.querySelector('#run-poi')?.addEventListener('click', () => {
-    const list = recommendPOI({
+  document.querySelector('#run-poi')?.addEventListener('click', async () => {
+    const list = await recommendPOI({
       query: value('#poi-query'),
       category: value('#poi-category'),
       interests: value('#poi-interests') || state.interests,
@@ -156,6 +164,7 @@ function bindRecommend() {
         <p>${escapeHtml(x.area)} · ${escapeHtml(x.category)}</p>
         <p>推荐理由：${toChips(x.tags)}</p>
         <p>热度 ${x.heat} · 评分 ${x.rating}</p>
+        <p><a class="inline-link" href="./poi-detail.html?id=${encodeURIComponent(x.id)}">查看详情</a></p>
       </div>`
       )
     );
@@ -166,8 +175,8 @@ function bindRoute() {
   drawInlineMap('#route-map-canvas', ['杭州西湖', '灵隐寺'], '路线概览');
   setMapInfo('#route-map-info', '默认展示：杭州西湖 → 灵隐寺');
 
-  document.querySelector('#run-route')?.addEventListener('click', () => {
-    const result = planSingleRoute({
+  document.querySelector('#run-route')?.addEventListener('click', async () => {
+    const result = await planSingleRoute({
       start: value('#route-start'),
       target: value('#route-target'),
       strategy: value('#route-strategy'),
@@ -184,8 +193,8 @@ function bindRoute() {
     setMapInfo('#route-map-info', `当前路线：${result.path.join(' → ')}；预计强度：${result.total}`);
   });
 
-  document.querySelector('#run-multi-route')?.addEventListener('click', () => {
-    const result = planMultiRoute({
+  document.querySelector('#run-multi-route')?.addEventListener('click', async () => {
+    const result = await planMultiRoute({
       start: value('#route-start'),
       targets: value('#multi-targets'),
       strategy: value('#route-strategy')
@@ -219,9 +228,9 @@ function bindFacility() {
     });
   });
 
-  document.querySelector('#run-facility')?.addEventListener('click', () => {
+  document.querySelector('#run-facility')?.addEventListener('click', async () => {
     const maxRange = Number(value('#facility-range') || 5);
-    const list = queryFacilities({ origin: value('#facility-origin'), category: value('#facility-category') }).filter(
+    const list = (await queryFacilities({ origin: value('#facility-origin'), category: value('#facility-category') })).filter(
       (x) => Number.parseFloat(x.routeDistance) <= maxRange
     );
     renderCards(
@@ -237,21 +246,23 @@ function bindFacility() {
 }
 
 function bindDiary() {
-  document.querySelector('#run-diary-search')?.addEventListener('click', () => {
-    const list = searchDiaries({ keyword: value('#diary-keyword'), sortBy: value('#diary-sort') });
+  document.querySelector('#run-diary-search')?.addEventListener('click', async () => {
+    const list = await searchDiaries({ keyword: value('#diary-keyword'), sortBy: value('#diary-sort') });
     renderCards(
       '#diary-output',
       list.slice(0, 10).map(
         (x) =>
           `<div class="item"><h4>${escapeHtml(x.title)}</h4><p>${escapeHtml(x.destination)} · 作者 ${escapeHtml(
             x.author
-          )}</p><p>${escapeHtml(x.body)}</p><p>热度 ${x.heat} · 评分 ${x.rating}</p></div>`
+          )}</p><p>${escapeHtml(x.body)}</p><p>热度 ${x.heat} · 评分 ${x.rating}</p><p><a class="inline-link" href="./diary-detail.html?id=${encodeURIComponent(
+            x.id
+          )}">查看详情</a></p></div>`
       )
     );
   });
 
-  document.querySelector('#run-diary-compress')?.addEventListener('click', () => {
-    const r = compressDiary(value('#diary-text'));
+  document.querySelector('#run-diary-compress')?.addEventListener('click', async () => {
+    const r = await compressDiary(value('#diary-text'));
     setHtml(
       '#diary-output',
       `<div class="item"><h4>草稿已保存</h4><p>标题：${escapeHtml(value('#diary-title') || '未命名游记')}</p><p>内容已完成存储处理。</p><p>文本长度：${r.binary.length}</p></div>`
@@ -274,9 +285,9 @@ function bindFood() {
     });
   });
 
-  document.querySelector('#run-food')?.addEventListener('click', () => {
+  document.querySelector('#run-food')?.addEventListener('click', async () => {
     const budgetText = document.querySelector('#food-budget-label')?.textContent || '80';
-    const list = recommendFood({
+    const list = await recommendFood({
       query: value('#food-query'),
       cuisine: value('#food-cuisine'),
       near: value('#food-near'),
@@ -288,7 +299,9 @@ function bindFood() {
         (x) =>
           `<div class="item"><h4>${escapeHtml(x.name)}</h4><p>${escapeHtml(x.cuisine)} · ${escapeHtml(
             x.shop
-          )}</p><p>附近位置：${escapeHtml(x.near)}</p><p>热度 ${x.heat} · 评分 ${x.rating}</p><p>参考预算：${budgetText} 元/人</p></div>`
+          )}</p><p>附近位置：${escapeHtml(x.near)}</p><p>热度 ${x.heat} · 评分 ${x.rating}</p><p>参考预算：${budgetText} 元/人</p><p><a class="inline-link" href="./food-detail.html?id=${encodeURIComponent(
+            x.id
+          )}">查看详情</a></p></div>`
       )
     );
   });
@@ -298,8 +311,8 @@ function bindConcert() {
   drawInlineMap('#concert-map-canvas', ['上海外滩', '虹馆Live'], '演出动线概览');
   setMapInfo('#concert-map-info', '默认展示：上海外滩 → 虹馆Live。');
 
-  document.querySelector('#run-concert')?.addEventListener('click', () => {
-    const data = concertPlan({ venue: value('#concert-venue'), timeLimitMin: value('#concert-time-limit') });
+  document.querySelector('#run-concert')?.addEventListener('click', async () => {
+    const data = await concertPlan({ venue: value('#concert-venue'), timeLimitMin: value('#concert-time-limit') });
     if (data.error) return setHtml('#concert-output', `<p class="warn">${data.error}</p>`);
     setHtml(
       '#concert-output',
@@ -320,8 +333,8 @@ function bindConcert() {
 }
 
 function bindProfile() {
-  document.querySelector('#run-profile')?.addEventListener('click', () => {
-    const list = buildProfile();
+  document.querySelector('#run-profile')?.addEventListener('click', async () => {
+    const list = await buildProfile();
     renderCards(
       '#profile-output',
       list.map(
@@ -337,17 +350,121 @@ function bindTeam() {
   drawInlineMap('#team-map-canvas', ['上海外滩', '虹馆Live', '音乐涂鸦墙', '深夜火锅局'], '共享路线概览');
   setMapInfo('#team-map-info', '默认展示当前小队路线。');
 
-  document.querySelector('#run-team')?.addEventListener('click', () => {
-    const data = teamCollab({ currentNode: value('#team-current-node') });
+  document.querySelector('#run-team')?.addEventListener('click', async () => {
+    const data = await teamCollab({ currentNode: value('#team-current-node') });
     setHtml(
       '#team-output',
       `<div class="item"><h4>当前小队安排</h4><p>当前选择：${escapeHtml(data.voted)}</p><p class="route">${data.plannedPath
         .map(escapeHtml)
-        .join(' → ')}</p><p class="${data.deviation.deviated ? 'warn' : ''}">${escapeHtml(data.alert)}</p></div>`
+        .join(' → ')}</p><p class="${data.deviation.deviated ? 'warn' : ''}">${escapeHtml(data.alert)}</p><p><a class="inline-link" href="./team-room.html?node=${encodeURIComponent(
+        data.currentNode
+      )}">进入小队房间</a></p></div>`
     );
     drawInlineMap('#team-map-canvas', data.plannedPath, '共享路线概览');
     setMapInfo('#team-map-info', `${data.alert} 当前节点：${data.currentNode}`);
   });
+}
+
+async function bindPoiDetail() {
+  const id = getParam('id');
+  const data = await getPOIDetail(id);
+  if (!data) return renderMissing('#poi-detail-output', '未找到对应地点。');
+  setText('#poi-detail-name', data.poi.name);
+  setText('#poi-detail-sub', `${data.poi.area} · ${data.poi.category}`);
+  setHtml('#poi-detail-tags', toChips(data.poi.tags));
+  setText('#poi-detail-rating', `热度 ${data.poi.heat} · 评分 ${data.poi.rating}`);
+  renderCards(
+    '#poi-detail-output',
+    [
+      `<div class="item"><h4>适合人群</h4><p>${escapeHtml(data.poi.tags.join('、'))} 爱好者更容易喜欢这里。</p></div>`,
+      `<div class="item"><h4>下一步建议</h4><p><a class="inline-link" href="./route.html">去做行程规划</a> · <a class="inline-link" href="./facility.html">查看周边服务</a></p></div>`
+    ].concat(
+      data.relatedDiaries.slice(0, 2).map(
+        (item) => `<div class="item"><h4>相关游记：${escapeHtml(item.title)}</h4><p>${escapeHtml(item.body)}</p></div>`
+      )
+    )
+  );
+  renderCards(
+    '#poi-related-foods',
+    data.nearbyFoods.map(
+      (item) => `<div class="item"><h4>${escapeHtml(item.name)}</h4><p>${escapeHtml(item.cuisine)} · ${escapeHtml(
+        item.shop
+      )}</p></div>`
+    )
+  );
+  renderCards(
+    '#poi-related-services',
+    data.nearbyServices.map(
+      (item) => `<div class="item"><h4>${escapeHtml(item.name)}</h4><p>步行距离：${escapeHtml(item.routeDistance)}</p></div>`
+    )
+  );
+}
+
+async function bindDiaryDetail() {
+  const id = getParam('id');
+  const data = await getDiaryDetail(id);
+  if (!data) return renderMissing('#diary-detail-output', '未找到对应游记。');
+  setText('#diary-detail-title', data.diary.title);
+  setText('#diary-detail-meta', `${data.diary.destination} · 作者 ${data.diary.author}`);
+  setText('#diary-detail-body', data.diary.body);
+  setText('#diary-detail-stats', `热度 ${data.diary.heat} · 评分 ${data.diary.rating}`);
+  renderCards(
+    '#diary-detail-output',
+    data.relatedPois.map(
+      (item) => `<div class="item"><h4>${escapeHtml(item.name)}</h4><p>${escapeHtml(item.area)} · ${escapeHtml(item.category)}</p></div>`
+    )
+  );
+  renderCards(
+    '#diary-related-foods',
+    data.relatedFoods.map(
+      (item) => `<div class="item"><h4>${escapeHtml(item.name)}</h4><p>${escapeHtml(item.cuisine)} · ${escapeHtml(
+        item.near
+      )}</p></div>`
+    )
+  );
+}
+
+async function bindFoodDetail() {
+  const id = getParam('id');
+  const data = await getFoodDetail(id);
+  if (!data) return renderMissing('#food-detail-output', '未找到对应餐厅。');
+  setText('#food-detail-name', data.food.name);
+  setText('#food-detail-meta', `${data.food.cuisine} · ${data.food.shop}`);
+  setText('#food-detail-near', `附近位置：${data.food.near}`);
+  setText('#food-detail-rating', `热度 ${data.food.heat} · 评分 ${data.food.rating}`);
+  renderCards(
+    '#food-detail-output',
+    data.nearbyPois.map(
+      (item) => `<div class="item"><h4>${escapeHtml(item.name)}</h4><p>${escapeHtml(item.area)} · ${escapeHtml(item.category)}</p></div>`
+    )
+  );
+  renderCards(
+    '#food-related-diaries',
+    data.relatedDiaries.map(
+      (item) => `<div class="item"><h4>${escapeHtml(item.title)}</h4><p>${escapeHtml(item.body)}</p></div>`
+    )
+  );
+}
+
+async function bindTeamRoom() {
+  const currentNode = getParam('node') || '虹馆Live';
+  const data = await getTeamRoom(currentNode);
+  setText('#team-room-name', data.roomName);
+  setText('#team-room-meta', `当前集合点：${data.currentNode}`);
+  setText('#team-room-alert', data.alert);
+  drawInlineMap('#team-room-map', data.plannedPath, '小队共享路线');
+  renderCards(
+    '#team-room-members',
+    data.members.map(
+      (member) => `<div class="item"><h4>${escapeHtml(member)}</h4><p>${
+        data.activeMembers.includes(member) ? '状态正常，已同步路线。' : '等待再次同步位置。'
+      }</p></div>`
+    )
+  );
+  renderCards(
+    '#team-room-plan',
+    data.nextStops.map((stop, index) => `<div class="item"><h4>下一站 ${index + 1}</h4><p>${escapeHtml(stop)}</p></div>`)
+  );
 }
 
 function renderCards(selector, cards) {
@@ -359,9 +476,22 @@ function value(selector) {
   return document.querySelector(selector)?.value?.trim() || '';
 }
 
+function getParam(name) {
+  return new URLSearchParams(window.location.search).get(name) || '';
+}
+
 function setHtml(selector, html) {
   const el = document.querySelector(selector);
   if (el) el.innerHTML = html;
+}
+
+function setText(selector, text) {
+  const el = document.querySelector(selector);
+  if (el) el.textContent = text;
+}
+
+function renderMissing(selector, message) {
+  setHtml(selector, `<p>${escapeHtml(message)}</p>`);
 }
 
 function escapeHtml(text) {

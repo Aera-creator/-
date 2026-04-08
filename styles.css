@@ -719,6 +719,22 @@ button {
   line-height: 1.6;
 }
 
+.inline-link {
+  color: var(--brand-deep);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.text-panel {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  padding: 16px;
+  line-height: 1.9;
+  color: #334155;
+  white-space: pre-wrap;
+}
+
 .mini-list {
   display: grid;
   gap: 10px;
