@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>游记社区</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="diary">
+    <header class="topbar"><div class="brand"><span class="brand-mark">A</span><div><h1>旅迹 Atlas</h1><p>个性化旅游系统</p></div></div><div class="account"><span class="avatar">AL</span><div><b>Aera Lin</b><span>普通会员 · Lv.3</span></div></div></header>
+    <div class="layout">
+      <aside class="sidebar"><div class="side-title">系统模块</div><nav class="nav"><a href="./index.html" data-page="home">首页</a><a href="./recommend.html" data-page="recommend">发现目的地</a><a href="./route.html" data-page="route">行程规划</a><a href="./facility.html" data-page="facility">周边服务</a><a href="./diary.html" data-page="diary">游记社区</a><a href="./food.html" data-page="food">附近美食</a><a href="./concert.html" data-page="concert">演出行程</a><a href="./team.html" data-page="team">同行小队</a></nav></aside>
+      <main class="content">
+        <section class="page-hero module-hero diary-hero">
+          <div>
+            <p class="hero-kicker">游记社区</p>
+            <h2>一边记录自己的旅程，一边借别人真实的经验继续做决定</h2>
+            <p class="sub">这个模块需要同时承载写作和浏览，所以页面拆成“写一篇”和“看社区”两个工作区，而不是把所有输入框放在一列。</p>
+          </div>
+          <div class="hero-meta">
+            <span class="meta-chip">写草稿</span>
+            <span class="meta-chip">搜游记</span>
+            <span class="meta-chip">看热门</span>
+          </div>
+        </section>
+
+        <nav class="local-nav">
+          <a href="#write-diary" class="section-link">写一篇</a>
+          <a href="#search-diary" class="section-link">看社区</a>
+          <a href="#diary-results" class="section-link">内容结果</a>
+        </nav>
+
+        <div class="workspace-grid">
+          <div class="workspace-main stack">
+            <section id="write-diary" class="panel-card">
+              <div class="panel-head"><div><h3>写一篇</h3><p class="subtle">适合出行中快速记下过程，也适合先存草稿。</p></div></div>
+              <div class="field-grid single-col">
+                <label class="field"><span>游记标题</span><input id="diary-title" placeholder="游记标题" value="我的观演之旅" /></label>
+                <label class="field"><span>正文内容</span><textarea id="diary-text" rows="7">今晚散场后在外滩散步，夜景很美，火锅也很好吃。</textarea></label>
+              </div>
+              <div class="panel-actions"><button id="run-diary-compress">保存草稿</button></div>
+            </section>
+
+            <section id="search-diary" class="panel-card">
+              <div class="panel-head"><div><h3>看社区</h3><p class="subtle">输入地点或主题词，找真实体验和高分内容。</p></div></div>
+              <div class="field-grid two-col">
+                <label class="field"><span>关键词</span><input id="diary-keyword" value="外滩 演唱会" /></label>
+                <label class="field"><span>排序方式</span><select id="diary-sort"><option value="heat">热门优先</option><option value="rating">高分优先</option></select></label>
+              </div>
+              <div class="panel-actions"><button id="run-diary-search">搜索游记</button></div>
+            </section>
+
+            <section id="diary-results" class="panel-card">
+              <div class="panel-head"><div><h3>内容结果</h3><p class="subtle">保存草稿和搜索社区的结果都在这里汇总。</p></div></div>
+              <div id="diary-output" class="result empty-state"><p>你可以先保存草稿，也可以先搜索别人的游记作为参考。</p></div>
+            </section>
+          </div>
+
+          <aside class="workspace-side stack">
+            <section class="panel-card accent-card">
+              <div class="panel-head"><div><h3>写作提示</h3><p class="subtle">让内容更容易读，也更方便日后回看</p></div></div>
+              <ul class="timeline-mini">
+                <li>先写清楚去了哪里、按什么顺序走。</li>
+                <li>再补上吃了什么、值得不值得。</li>
+                <li>最后写一个“如果重来一次，我会怎样安排”。</li>
+              </ul>
+            </section>
+
+            <section class="panel-card">
+              <div class="panel-head"><div><h3>社区灵感</h3><p class="subtle">高频主题</p></div></div>
+              <div class="tag-cloud">
+                <span class="chip">演出散场</span>
+                <span class="chip">外滩夜景</span>
+                <span class="chip">校园慢游</span>
+                <span class="chip">城市步行线</span>
+                <span class="chip">夜宵推荐</span>
+              </div>
+            </section>
+          </aside>
+        </div>
+      </main>
+    </div>
+    <script type="module" src="./src/ui/pages.js"></script>
+  </body>
+</html>

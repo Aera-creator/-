@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>账户中心</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="account">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">A</span><div><h1>旅迹 Atlas</h1><p>个性化旅游系统</p></div></div>
+      <div class="account"><span class="avatar">AL</span><div><b>Aera Lin</b><span>普通会员 · Lv.3</span></div></div>
+    </header>
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="side-title">系统模块</div>
+        <nav class="nav">
+          <a href="./index.html" data-page="home">首页</a><a href="./recommend.html" data-page="recommend">发现目的地</a><a href="./route.html" data-page="route">行程规划</a><a href="./facility.html" data-page="facility">周边服务</a><a href="./diary.html" data-page="diary">游记社区</a><a href="./food.html" data-page="food">附近美食</a><a href="./concert.html" data-page="concert">演出行程</a><a href="./team.html" data-page="team">同行小队</a>
+        </nav>
+      </aside>
+      <main class="content">
+        <section class="page-hero module-hero account-hero">
+          <div>
+            <p class="hero-kicker">账户中心</p>
+            <h2>资料、安全、偏好和成长记录都从这里管理</h2>
+            <p class="sub">账户页不再和主导航混在一起，它属于右上角入口，并继续发散到“旅行档案”这类更私人的子页面。</p>
+          </div>
+          <div class="hero-actions">
+            <a href="./profile.html" class="hero-link">打开旅行档案</a>
+          </div>
+        </section>
+
+        <nav class="local-nav">
+          <a href="#account-profile" class="section-link">个人资料</a>
+          <a href="#account-preference" class="section-link">旅行偏好</a>
+          <a href="#account-security" class="section-link">安全设置</a>
+          <a href="#account-archive" class="section-link">旅行档案</a>
+        </nav>
+
+        <div class="workspace-grid">
+          <div class="workspace-main stack">
+            <section id="account-profile" class="panel-card">
+              <div class="panel-head"><div><h3>个人资料</h3><p class="subtle">基本资料和常用联系信息。</p></div></div>
+              <div class="field-grid two-col">
+                <label class="field"><span>昵称</span><input id="user-name" placeholder="昵称" value="Aera Lin" /></label>
+                <label class="field"><span>手机号</span><input id="user-phone" placeholder="手机号" value="13800000000" /></label>
+                <label class="field"><span>常驻城市</span><input id="user-city" placeholder="常驻城市" value="上海" /></label>
+                <label class="field"><span>邮箱</span><input id="user-email" placeholder="邮箱" value="aera@example.com" /></label>
+              </div>
+            </section>
+
+            <section id="account-preference" class="panel-card">
+              <div class="panel-head"><div><h3>旅行偏好</h3><p class="subtle">这些偏好会影响目的地、美食和演出行程的推荐风格。</p></div></div>
+              <div class="field-grid single-col">
+                <label class="field"><span>兴趣标签</span><input id="user-interests" placeholder="兴趣标签" value="夜景 演唱会 美食 文化" /></label>
+              </div>
+              <div class="switch-list card-switches">
+                <label><input type="checkbox" checked /> 演出提醒</label>
+                <label><input type="checkbox" checked /> 行程变动提醒</label>
+                <label><input type="checkbox" /> 每周精选推荐</label>
+              </div>
+            </section>
+
+            <section id="account-security" class="panel-card">
+              <div class="panel-head"><div><h3>安全设置</h3><p class="subtle">头像、密码和登录状态管理。</p></div></div>
+              <div class="field-grid two-col">
+                <label class="field"><span>头像地址（可选）</span><input id="account-avatar-link" placeholder="头像地址（可选）" /></label>
+                <div class="field action-field"><span>头像</span><button id="save-avatar-page">更新头像</button></div>
+                <label class="field"><span>新密码</span><input id="account-password" type="password" placeholder="新密码（至少6位）" /></label>
+                <div class="field action-field"><span>密码</span><button id="save-password-page">修改密码</button></div>
+              </div>
+              <div class="panel-actions"><button class="ghost" id="logout-page">退出登录</button></div>
+            </section>
+
+            <section class="panel-card">
+              <div class="panel-head"><div><h3>保存结果</h3><p class="subtle">账户相关操作的反馈会统一显示在这里。</p></div></div>
+              <div id="account-output" class="result empty-state"><p>修改完成后点击保存，或者单独更新头像与密码。</p></div>
+              <div class="panel-actions"><button id="save-account">保存设置</button></div>
+            </section>
+          </div>
+
+          <aside class="workspace-side stack">
+            <section id="account-archive" class="panel-card accent-card">
+              <div class="panel-head"><div><h3>旅行档案</h3><p class="subtle">账户页下的专属子页面</p></div></div>
+              <div class="mini-card"><b>旅行风格</b><p>查看你的偏好风格、成长等级和年度记录。</p></div>
+              <div class="action-grid single-col">
+                <a class="action-tile small" href="./profile.html"><b>进入旅行档案</b><p>这是账户中心下的独立子界面。</p></a>
+              </div>
+            </section>
+
+            <section class="panel-card">
+              <div class="panel-head"><div><h3>账户建议</h3><p class="subtle">让系统更贴近个人习惯</p></div></div>
+              <ul class="timeline-mini">
+                <li>偏好标签建议保持在 3 至 6 个。</li>
+                <li>如果经常看演出，打开提醒会更有价值。</li>
+                <li>头像和昵称会出现在协同和社区场景中。</li>
+              </ul>
+            </section>
+          </aside>
+        </div>
+      </main>
+    </div>
+    <script type="module" src="./src/ui/pages.js"></script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>旅行档案</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="profile">
+    <header class="topbar"><div class="brand"><span class="brand-mark">A</span><div><h1>旅迹 Atlas</h1><p>个性化旅游系统</p></div></div><div class="account"><span class="avatar">AL</span><div><b>Aera Lin</b><span>普通会员 · Lv.3</span></div></div></header>
+    <div class="layout">
+      <aside class="sidebar"><div class="side-title">系统模块</div><nav class="nav"><a href="./index.html" data-page="home">首页</a><a href="./recommend.html" data-page="recommend">发现目的地</a><a href="./route.html" data-page="route">行程规划</a><a href="./facility.html" data-page="facility">周边服务</a><a href="./diary.html" data-page="diary">游记社区</a><a href="./food.html" data-page="food">附近美食</a><a href="./concert.html" data-page="concert">演出行程</a><a href="./team.html" data-page="team">同行小队</a></nav></aside>
+      <main class="content">
+        <section class="page-hero module-hero profile-hero">
+          <div>
+            <p class="hero-kicker">旅行档案</p>
+            <h2>把旅途里的偏好、成长和阶段记录收在一页里</h2>
+            <p class="sub">它属于账户中心下的子页面，因此语气要更私人、更总结，而不是主导航里的工具页。</p>
+          </div>
+          <div class="hero-actions">
+            <a href="./account.html" class="hero-link ghost-link">返回账户中心</a>
+          </div>
+        </section>
+
+        <nav class="local-nav">
+          <a href="#profile-summary" class="section-link">偏好分析</a>
+          <a href="#profile-growth" class="section-link">成长记录</a>
+          <a href="#profile-list" class="section-link">档案明细</a>
+        </nav>
+
+        <div class="workspace-grid">
+          <div class="workspace-main stack">
+            <section id="profile-summary" class="panel-card">
+              <div class="panel-head"><div><h3>偏好分析</h3><p class="subtle">更新后会看到你更偏向哪种旅行风格。</p></div></div>
+              <div class="metric-strip">
+                <div class="stat-compact"><b>当前等级</b><p>Lv.3</p></div>
+                <div class="stat-compact"><b>近期关键词</b><p>夜景 · 演出 · 美食</p></div>
+                <div class="stat-compact"><b>常用场景</b><p>城市漫步</p></div>
+              </div>
+              <div class="panel-actions"><button id="run-profile">更新档案</button></div>
+              <div id="profile-radar" class="radar-placeholder">偏好分布区（夜景、文化、美食、路线偏好）</div>
+            </section>
+
+            <section id="profile-list" class="panel-card">
+              <div class="panel-head"><div><h3>档案明细</h3><p class="subtle">更新档案后，这里会按成员展示风格和成长状态。</p></div></div>
+              <div id="profile-output" class="result empty-state"><p>点击“更新档案”后查看你的旅行风格、等级进度和年度记录。</p></div>
+            </section>
+          </div>
+
+          <aside class="workspace-side stack">
+            <section id="profile-growth" class="panel-card accent-card">
+              <div class="panel-head"><div><h3>成长记录</h3><p class="subtle">更适合放在侧边长期查看</p></div></div>
+              <ul class="timeline-mini" id="profile-milestones">
+                <li>发表 10 篇游记：解锁创作勋章</li>
+                <li>完成 20 次行程安排：解锁路线达人</li>
+                <li>参与 5 次小队协同：解锁队长徽章</li>
+              </ul>
+            </section>
+
+            <section class="panel-card">
+              <div class="panel-head"><div><h3>关联入口</h3><p class="subtle">旅行档案通常和这两个页面一起使用</p></div></div>
+              <div class="action-grid single-col">
+                <a class="action-tile small" href="./account.html"><b>返回账户中心</b><p>继续修改资料、安全与偏好。</p></a>
+                <a class="action-tile small" href="./recommend.html"><b>去发现目的地</b><p>让偏好直接影响下一次推荐。</p></a>
+              </div>
+            </section>
+          </aside>
+        </div>
+      </main>
+    </div>
+    <script type="module" src="./src/ui/pages.js"></script>
+  </body>
+</html>

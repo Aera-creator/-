@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>同行小队</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="team">
+    <header class="topbar"><div class="brand"><span class="brand-mark">A</span><div><h1>旅迹 Atlas</h1><p>个性化旅游系统</p></div></div><div class="account"><span class="avatar">AL</span><div><b>Aera Lin</b><span>普通会员 · Lv.3</span></div></div></header>
+    <div class="layout">
+      <aside class="sidebar"><div class="side-title">系统模块</div><nav class="nav"><a href="./index.html" data-page="home">首页</a><a href="./recommend.html" data-page="recommend">发现目的地</a><a href="./route.html" data-page="route">行程规划</a><a href="./facility.html" data-page="facility">周边服务</a><a href="./diary.html" data-page="diary">游记社区</a><a href="./food.html" data-page="food">附近美食</a><a href="./concert.html" data-page="concert">演出行程</a><a href="./team.html" data-page="team">同行小队</a></nav></aside>
+      <main class="content">
+        <section class="page-hero module-hero team-hero">
+          <div>
+            <p class="hero-kicker">同行小队</p>
+            <h2>让同行成员看到同一份路线、同一份状态和同一份下一步决定</h2>
+            <p class="sub">这个模块更像小队协作台，所以要把成员状态、投票结果和共享路线拆开显示，不能只给一个输出框。</p>
+          </div>
+          <div class="hero-meta">
+            <span class="meta-chip">成员状态</span>
+            <span class="meta-chip">路线投票</span>
+            <span class="meta-chip">共享地图</span>
+          </div>
+        </section>
+
+        <nav class="local-nav">
+          <a href="#team-status" class="section-link">成员状态</a>
+          <a href="#team-vote" class="section-link">路线投票</a>
+          <a href="#team-map" class="section-link">共享地图</a>
+        </nav>
+
+        <div class="workspace-grid">
+          <div class="workspace-main stack">
+            <section id="team-status" class="panel-card">
+              <div class="panel-head"><div><h3>成员状态</h3><p class="subtle">更新当前集合点，快速确认队伍是否偏离原路线。</p></div></div>
+              <div class="field-grid two-col">
+                <label class="field"><span>当前集合点</span><input id="team-current-node" value="虹馆Live" /></label>
+                <div class="field action-field"><span>执行</span><button id="run-team">更新小队状态</button></div>
+              </div>
+              <div id="team-member-board" class="member-board">
+                <div class="member"><span class="dot on"></span><b>演出党小李</b><span>已到场馆附近</span></div>
+                <div class="member"><span class="dot on"></span><b>校园控小周</b><span>路线正常</span></div>
+                <div class="member"><span class="dot off"></span><b>文化旅小王</b><span>暂未同步位置</span></div>
+              </div>
+            </section>
+
+            <section id="team-vote" class="panel-card">
+              <div class="panel-head"><div><h3>路线投票</h3><p class="subtle">先形成共识，再推进下一步。</p></div></div>
+              <div class="vote-row"><span>方案 A：观演后去夜宵</span><b>2 票</b></div>
+              <div class="vote-row"><span>方案 B：先去校园再回景点</span><b>1 票</b></div>
+            </section>
+
+            <section class="panel-card">
+              <div class="panel-head"><div><h3>小队安排</h3><p class="subtle">更新状态后会显示当前建议。</p></div></div>
+              <div id="team-output" class="result empty-state"><p>这里会根据成员当前位置和当前票数给出小队下一步安排。</p></div>
+            </section>
+
+            <section id="team-map" class="panel-card">
+              <div class="panel-head"><div><h3>共享地图</h3><p class="subtle">适合一起看路线，不用来回解释。</p></div></div>
+              <div id="team-map-canvas" class="map-canvas"></div>
+              <div id="team-map-info" class="result compact-result"></div>
+            </section>
+          </div>
+
+          <aside class="workspace-side stack">
+            <section class="panel-card accent-card">
+              <div class="panel-head"><div><h3>协作提示</h3><p class="subtle">多人出行最容易卡住的地方</p></div></div>
+              <ul class="timeline-mini">
+                <li>先确认集合点，再讨论下一步，不要一边走一边改。</li>
+                <li>投票只保留 2 个方案，决定会更快。</li>
+                <li>如果成员偏离明显，优先回到共享路线再继续。</li>
+              </ul>
+            </section>
+
+            <section class="panel-card">
+              <div class="panel-head"><div><h3>关联页面</h3><p class="subtle">适合协同场景继续打开的模块</p></div></div>
+              <div class="action-grid single-col">
+                <a href="./route.html" class="action-tile small"><b>回到行程规划</b><p>想重排路线时直接切过去。</p></a>
+                <a href="./concert.html" class="action-tile small"><b>切到演出行程</b><p>如果今天以演出为核心，这个页面更合适。</p></a>
+              </div>
+            </section>
+          </aside>
+        </div>
+      </main>
+    </div>
+    <script type="module" src="./src/ui/pages.js"></script>
+  </body>
+</html>

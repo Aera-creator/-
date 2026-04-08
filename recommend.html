@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>发现目的地</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="recommend">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">A</span><div><h1>旅迹 Atlas</h1><p>个性化旅游系统</p></div></div>
+      <div class="account"><span class="avatar">AL</span><div><b>Aera Lin</b><span>普通会员 · Lv.3</span></div></div>
+    </header>
+    <div class="layout">
+      <aside class="sidebar"><div class="side-title">系统模块</div><nav class="nav"><a href="./index.html" data-page="home">首页</a><a href="./recommend.html" data-page="recommend">发现目的地</a><a href="./route.html" data-page="route">行程规划</a><a href="./facility.html" data-page="facility">周边服务</a><a href="./diary.html" data-page="diary">游记社区</a><a href="./food.html" data-page="food">附近美食</a><a href="./concert.html" data-page="concert">演出行程</a><a href="./team.html" data-page="team">同行小队</a></nav></aside>
+      <main class="content">
+        <section class="page-hero module-hero recommend-hero">
+          <div>
+            <p class="hero-kicker">发现目的地</p>
+            <h2>先决定这次想要怎样的旅程，再从结果里继续往下走</h2>
+            <p class="sub">这里更像灵感入口，不直接谈算法，只帮用户从兴趣、城市和场景中找到值得去的地方。</p>
+          </div>
+          <div class="hero-meta">
+            <span class="meta-chip">适合第一次打开系统时使用</span>
+            <span class="meta-chip">结果可继续进入行程规划</span>
+          </div>
+        </section>
+
+        <nav class="local-nav">
+          <a href="#discover" class="section-link">筛选灵感</a>
+          <a href="#results" class="section-link">推荐结果</a>
+          <a href="#next" class="section-link">后续动作</a>
+        </nav>
+
+        <div class="workspace-grid">
+          <div class="workspace-main stack">
+            <section id="discover" class="panel-card">
+              <div class="panel-head">
+                <div>
+                  <h3>筛选灵感</h3>
+                  <p class="subtle">可以直接按场景点选，也可以精确输入城市或关键词。</p>
+                </div>
+              </div>
+              <div class="quick-filter" id="recommend-quick-tags">
+                <button type="button" class="ghost chip-btn" data-query="夜景">夜景城市</button>
+                <button type="button" class="ghost chip-btn" data-query="校园">高校漫游</button>
+                <button type="button" class="ghost chip-btn" data-query="文化">文化体验</button>
+                <button type="button" class="ghost chip-btn" data-query="拍照">拍照打卡</button>
+              </div>
+              <div class="field-grid three-col">
+                <label class="field"><span>想去哪里</span><input id="poi-query" placeholder="搜索城市、景点或风格（如 上海）" /></label>
+                <label class="field"><span>地点类型</span><select id="poi-category"><option value="">全部类型</option><option value="景点">景点</option><option value="学校">校园</option><option value="打卡点">打卡地</option></select></label>
+                <label class="field"><span>我的偏好</span><input id="poi-interests" value="夜景 演唱会 美食" /></label>
+              </div>
+              <div class="panel-actions"><button id="run-poi">开始发现</button></div>
+            </section>
+
+            <section id="results" class="panel-card">
+              <div class="panel-head">
+                <div>
+                  <h3>推荐结果</h3>
+                  <p class="subtle">结果卡片会尽量说明地点类型、城市和匹配理由。</p>
+                </div>
+              </div>
+              <div id="poi-output" class="result empty-state">
+                <p>先点一个场景或输入关键词，系统会把合适的地点整理成可继续操作的列表。</p>
+              </div>
+            </section>
+          </div>
+
+          <aside class="workspace-side stack">
+            <section class="panel-card accent-card">
+              <div class="panel-head"><div><h3>本周热门方向</h3><p class="subtle">适合直接开始的主题</p></div></div>
+              <div class="mini-list">
+                <div class="mini-card"><b>上海夜景 + 演出</b><p>适合打卡、散场夜宵和城市漫步。</p></div>
+                <div class="mini-card"><b>杭州慢游 + 校园</b><p>适合景点串联、骑行和轻松节奏。</p></div>
+                <div class="mini-card"><b>成都文化线</b><p>适合街区、艺术园区和本地风味。</p></div>
+              </div>
+            </section>
+
+            <section id="next" class="panel-card">
+              <div class="panel-head"><div><h3>后续动作</h3><p class="subtle">发现目的地之后最常见的下一步</p></div></div>
+              <div class="action-grid single-col">
+                <a href="./route.html" class="action-tile small"><b>去做行程规划</b><p>把喜欢的地点串成当天路线。</p></a>
+                <a href="./food.html" class="action-tile small"><b>顺便看看附近美食</b><p>围绕目的地继续找吃什么。</p></a>
+                <a href="./diary.html" class="action-tile small"><b>去看真实游记</b><p>先参考别人的体验再决定。</p></a>
+              </div>
+            </section>
+          </aside>
+        </div>
+      </main>
+    </div>
+    <script type="module" src="./src/ui/pages.js"></script>
+  </body>
+</html>

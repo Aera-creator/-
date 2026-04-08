@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>附近美食</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="food">
+    <header class="topbar"><div class="brand"><span class="brand-mark">A</span><div><h1>旅迹 Atlas</h1><p>个性化旅游系统</p></div></div><div class="account"><span class="avatar">AL</span><div><b>Aera Lin</b><span>普通会员 · Lv.3</span></div></div></header>
+    <div class="layout">
+      <aside class="sidebar"><div class="side-title">系统模块</div><nav class="nav"><a href="./index.html" data-page="home">首页</a><a href="./recommend.html" data-page="recommend">发现目的地</a><a href="./route.html" data-page="route">行程规划</a><a href="./facility.html" data-page="facility">周边服务</a><a href="./diary.html" data-page="diary">游记社区</a><a href="./food.html" data-page="food">附近美食</a><a href="./concert.html" data-page="concert">演出行程</a><a href="./team.html" data-page="team">同行小队</a></nav></aside>
+      <main class="content">
+        <section class="page-hero module-hero food-hero">
+          <div>
+            <p class="hero-kicker">附近美食</p>
+            <h2>吃什么要足够快，也要和当前地点、预算、场景对得上</h2>
+            <p class="sub">美食模块不该只是一个搜索框，所以这里保留口味、地点、预算和用餐场景，让用户更容易做决定。</p>
+          </div>
+          <div class="hero-meta">
+            <span class="meta-chip">按地点找</span>
+            <span class="meta-chip">按口味找</span>
+            <span class="meta-chip">按预算找</span>
+          </div>
+        </section>
+
+        <nav class="local-nav">
+          <a href="#food-search" class="section-link">找餐厅</a>
+          <a href="#food-results" class="section-link">推荐结果</a>
+          <a href="#food-scenes" class="section-link">用餐场景</a>
+        </nav>
+
+        <div class="workspace-grid">
+          <div class="workspace-main stack">
+            <section id="food-search" class="panel-card">
+              <div class="panel-head"><div><h3>找餐厅</h3><p class="subtle">先点口味，再补地点和预算。</p></div></div>
+              <div class="quick-filter" id="food-cuisine-tags">
+                <button type="button" class="ghost chip-btn" data-cuisine="火锅">火锅</button>
+                <button type="button" class="ghost chip-btn" data-cuisine="江浙菜">江浙菜</button>
+                <button type="button" class="ghost chip-btn" data-cuisine="甜品">甜品</button>
+                <button type="button" class="ghost chip-btn" data-cuisine="小吃">小吃</button>
+              </div>
+              <div class="field-grid three-col">
+                <label class="field"><span>想吃什么</span><input id="food-query" value="夜宵 火锅" /></label>
+                <label class="field"><span>菜系</span><input id="food-cuisine" placeholder="菜系（可空）" /></label>
+                <label class="field"><span>附近位置</span><input id="food-near" value="上海外滩" /></label>
+              </div>
+              <div class="field-grid two-col">
+                <label class="field range-field"><span>人均预算：<b><span id="food-budget-label">80</span> 元/人</b></span><input id="food-budget" type="range" min="30" max="300" value="80" /></label>
+                <div class="field action-field"><span>执行</span><button id="run-food">查找餐厅</button></div>
+              </div>
+            </section>
+
+            <section id="food-results" class="panel-card">
+              <div class="panel-head"><div><h3>推荐结果</h3><p class="subtle">结果会优先说明口味、门店位置和预算参考。</p></div></div>
+              <div id="food-output" class="result empty-state"><p>完成筛选后，这里会按当前条件给出适合的餐厅列表。</p></div>
+            </section>
+          </div>
+
+          <aside class="workspace-side stack">
+            <section id="food-scenes" class="panel-card accent-card">
+              <div class="panel-head"><div><h3>用餐场景</h3><p class="subtle">不同场景下的推荐逻辑不一样</p></div></div>
+              <div class="mini-list">
+                <div class="mini-card"><b>演出后夜宵</b><p>更看重营业时间、步行可达和速度。</p></div>
+                <div class="mini-card"><b>景点附近午餐</b><p>更看重顺路、翻台快和补给效率。</p></div>
+                <div class="mini-card"><b>拍照休息甜品</b><p>更看重环境、位置和停留体验。</p></div>
+              </div>
+            </section>
+
+            <section class="panel-card">
+              <div class="panel-head"><div><h3>相关页面</h3><p class="subtle">吃什么通常和这些操作连在一起</p></div></div>
+              <div class="action-grid single-col">
+                <a href="./route.html" class="action-tile small"><b>回到行程规划</b><p>把用餐点放回当天路线里。</p></a>
+                <a href="./concert.html" class="action-tile small"><b>切到演出行程</b><p>如果是观演后聚餐，可直接继续安排。</p></a>
+              </div>
+            </section>
+          </aside>
+        </div>
+      </main>
+    </div>
+    <script type="module" src="./src/ui/pages.js"></script>
+  </body>
+</html>

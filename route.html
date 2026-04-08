@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>行程规划</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="route">
+    <header class="topbar"><div class="brand"><span class="brand-mark">A</span><div><h1>旅迹 Atlas</h1><p>个性化旅游系统</p></div></div><div class="account"><span class="avatar">AL</span><div><b>Aera Lin</b><span>普通会员 · Lv.3</span></div></div></header>
+    <div class="layout">
+      <aside class="sidebar"><div class="side-title">系统模块</div><nav class="nav"><a href="./index.html" data-page="home">首页</a><a href="./recommend.html" data-page="recommend">发现目的地</a><a href="./route.html" data-page="route">行程规划</a><a href="./facility.html" data-page="facility">周边服务</a><a href="./diary.html" data-page="diary">游记社区</a><a href="./food.html" data-page="food">附近美食</a><a href="./concert.html" data-page="concert">演出行程</a><a href="./team.html" data-page="team">同行小队</a></nav></aside>
+      <main class="content">
+        <section class="page-hero module-hero route-hero">
+          <div>
+            <p class="hero-kicker">行程规划</p>
+            <h2>把目的地变成一条顺手可走的路线，并同步看到地图</h2>
+            <p class="sub">这一页负责真正的执行决策，所以分成快速导航、多点串联和地图三部分，避免所有东西挤在一起。</p>
+          </div>
+          <div class="hero-meta">
+            <span class="meta-chip">单点导航</span>
+            <span class="meta-chip">多点串联</span>
+            <span class="meta-chip">地图联动</span>
+          </div>
+        </section>
+
+        <nav class="local-nav">
+          <a href="#quick-route" class="section-link">快速导航</a>
+          <a href="#multi-route" class="section-link">多点串联</a>
+          <a href="#route-map" class="section-link">地图查看</a>
+        </nav>
+
+        <div class="workspace-grid">
+          <div class="workspace-main stack">
+            <section id="quick-route" class="panel-card">
+              <div class="panel-head"><div><h3>快速导航</h3><p class="subtle">适合已经知道起点和目的地的情况。</p></div></div>
+              <div class="field-grid two-col">
+                <label class="field"><span>出发点</span><input id="route-start" value="杭州西湖" /></label>
+                <label class="field"><span>目的地</span><input id="route-target" value="灵隐寺" /></label>
+              </div>
+              <div class="field-grid three-col">
+                <label class="field"><span>优先方式</span><select id="route-strategy"><option value="distance">距离优先</option><option value="time">时间优先</option><option value="crowd">尽量避开拥挤</option></select></label>
+                <label class="field"><span>出行方式</span><select id="route-mode"><option value="walk">步行</option><option value="metro">公交/地铁</option><option value="taxi">打车</option></select></label>
+                <div class="field action-field"><span>执行</span><button id="run-route">开始导航</button></div>
+              </div>
+            </section>
+
+            <section id="multi-route" class="panel-card">
+              <div class="panel-head"><div><h3>多点串联</h3><p class="subtle">适合一天里想去多个点位时使用。</p></div></div>
+              <div class="field-grid two-col">
+                <label class="field wide"><span>想依次经过的地点</span><input id="multi-targets" value="灵隐寺 景区医疗服务点 湖滨超市" /></label>
+                <div class="field action-field"><span>执行</span><button id="run-multi-route">生成多点行程</button></div>
+              </div>
+              <p class="hint">系统会自动补足更完整的行程顺序，方便你直接继续看地图。</p>
+            </section>
+
+            <section class="panel-card">
+              <div class="panel-head"><div><h3>路线结果</h3><p class="subtle">结果会显示路径顺序和行程强度。</p></div></div>
+              <div id="route-output" class="result empty-state"><p>选择导航方式后，这里会给出可直接阅读的路线结果。</p></div>
+            </section>
+
+            <section id="route-map" class="panel-card">
+              <div class="panel-head"><div><h3>路线地图</h3><p class="subtle">地图嵌在当前模块内，后续接入真实地图接口时可以直接替换。</p></div></div>
+              <div id="route-map-canvas" class="map-canvas"></div>
+              <div id="route-map-info" class="result compact-result"></div>
+            </section>
+          </div>
+
+          <aside class="workspace-side stack">
+            <section class="panel-card accent-card">
+              <div class="panel-head"><div><h3>行程提醒</h3><p class="subtle">做路线时最常用的信息</p></div></div>
+              <ul class="timeline-mini">
+                <li>先确定今天最不能错过的 1 个点位。</li>
+                <li>如果有多个地点，优先用多点串联而不是手动来回切换。</li>
+                <li>路线出来后，再去“周边服务”和“附近美食”补齐细节。</li>
+              </ul>
+            </section>
+
+            <section class="panel-card">
+              <div class="panel-head"><div><h3>后续动作</h3><p class="subtle">路线完成后常见的延伸页面</p></div></div>
+              <div class="action-grid single-col">
+                <a href="./facility.html" class="action-tile small"><b>查看周边服务</b><p>补充卫生间、超市和医疗点。</p></a>
+                <a href="./food.html" class="action-tile small"><b>安排沿途用餐</b><p>围绕路线找合适餐厅。</p></a>
+                <a href="./team.html" class="action-tile small"><b>发给同行小队</b><p>让同行成员一起看路线。</p></a>
+              </div>
+            </section>
+          </aside>
+        </div>
+      </main>
+    </div>
+    <script type="module" src="./src/ui/pages.js"></script>
+  </body>
+</html>

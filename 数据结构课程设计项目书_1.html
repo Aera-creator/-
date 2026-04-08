@@ -1,0 +1,996 @@
+<!DOCTYPE html><html><head>
+      <title>数据结构课程设计项目书_1</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\18514\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.22\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script>
+    </head>
+    <body for="html-export">
+      <div class="crossnote markdown-preview  ">
+      
+<p>以下是《数据结构课程设计项目书》前四部分（项目基本信息、背景与目的、问题描述、需求分析）的修订版。修改要点已在文中以 <strong>【修改】</strong> 标注，便于对照。</p>
+<hr>
+<h1 id="数据结构课程设计项目书">数据结构课程设计项目书 </h1>
+<h2 id="项目名称">项目名称 </h2>
+<h1 id="基于智能体辅助开发的个性化旅游系统设计与实现">基于智能体辅助开发的个性化旅游系统设计与实现 </h1>
+<hr>
+<h2 id="一-项目基本信息">一、项目基本信息 </h2>
+<ul>
+<li><strong>课程名称</strong>：数据结构课程设计</li>
+<li><strong>项目题目</strong>：个性化旅游系统的设计与实现</li>
+<li><strong>项目类型</strong>：课程设计 / 系统开发类项目</li>
+<li><strong>开发目标</strong>：设计并实现一个真实可用的个性化旅游系统，并在开发过程中突出数据结构与算法的综合应用</li>
+<li><strong>项目特色</strong>：<br>
+<strong>【修改】</strong> 将特色功能与核心算法明确关联，突出课程设计主线。
+<ul>
+<li><strong>1. 技术特色</strong>：以数据结构与核心算法为主线，引入智能体辅助需求分析、任务分解、系统设计、测试与文档生成，提高开发效率与项目完整性。</li>
+<li><strong>2. 功能特色</strong>：<br>
+（1）<strong>多人协同路线规划</strong>：支持小队成员共建路线、实时位置共享与偏离提醒。该功能深度融合图最短路径算法，偏离检测基于路径偏差阈值，重规划采用多源最短路径，实现团队高效协同。<br>
+（2）<strong>“演唱会+文旅”专属模块</strong>：以演唱会为核心锚点，融合周边文旅资源，打造一站式“观演+旅游”体验。在多权重图最短路径基础上，新增时间窗口约束与拥堵成本模型，体现算法扩展能力。<br>
+（3）<strong>陪伴成长体系</strong>：构建用户画像与等级成长机制，让系统从工具变为陪伴。基于聚类算法与行为日志分析，实现个性化推荐与年度回忆生成，持续提升用户粘性。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="二-项目背景与设计目的">二、项目背景与设计目的 </h2>
+<p>随着旅游服务不断向智能化、个性化方向发展，用户不再满足于简单的地点查询，而更希望系统能够根据个人偏好、当前位置、评价信息、热度信息以及行程目标，提供完整的推荐、导航、查询和记录服务。</p>
+<p><strong>【新增】</strong> 现有主流旅游系统在以下方面存在不足：</p>
+<ul>
+<li>缺乏对多用户协同场景的支持，团队出行规划效率低；</li>
+<li>对“观演+文旅”等新型旅游模式缺乏一体化服务；</li>
+<li>推荐与规划往往一次性，缺乏用户成长与长期陪伴机制。</li>
+</ul>
+<p>本项目面向“旅游前—旅游中—旅游后”的完整使用过程，构建一个个性化旅游系统，帮助用户完成以下任务：</p>
+<ul>
+<li>在出行前完成旅游地点与美食推荐；</li>
+<li>在景区、校园或建筑内部完成路径规划与场所查询；</li>
+<li>在出行后记录、管理和交流旅游日记。</li>
+</ul>
+<p>本课程设计的目的，一方面是完成一个功能较完整的旅游系统，另一方面是通过系统开发过程加深对数据结构与算法的理解，并尝试利用智能体辅助完成需求分析、系统设计、开发协作、测试和文档整理等工作。</p>
+<h3 id="21-课程设计目的">2.1 课程设计目的 </h3>
+<p>结合课程要求，本项目的设计目的包括：</p>
+<ol>
+<li>提升对数据结构课程知识的综合运用能力；</li>
+<li>利用智能体辅助完成系统的设计、开发与测试；</li>
+<li>提升分析与解决实际问题的能力；</li>
+<li>在具体应用场景中实现查找、排序、图、字符串处理、压缩等核心算法；</li>
+<li>完成一个可演示、可测试、可扩展的旅游服务系统。</li>
+</ol>
+<hr>
+<h2 id="三-项目问题描述">三、项目问题描述 </h2>
+<p>当前旅游活动中，用户在不同阶段往往面临不同类型的问题：</p>
+<h3 id="31-旅游前">3.1 旅游前 </h3>
+<p>用户需要根据景点热度、评价、兴趣偏好等信息，选择适合自己的旅游目的地，并进行初步规划。</p>
+<h3 id="32-旅游中">3.2 旅游中 </h3>
+<p>当用户进入景区、校园或建筑内部后，需要根据当前位置与游览目标规划最优路线，同时需要快速查询卫生间、超市、服务点等设施。</p>
+<h3 id="33-旅游后">3.3 旅游后 </h3>
+<p>用户希望通过文字、图片、视频等形式记录旅游过程，并对旅游日记进行统一管理、浏览、评分、交流和检索。</p>
+<p>因此，本项目拟设计并实现一个<strong>个性化旅游系统</strong>，使系统具有以下功能：</p>
+<ul>
+<li>旅游推荐</li>
+<li>旅游路线规划</li>
+<li>场所查询</li>
+<li>旅游日记管理</li>
+<li>旅游日记交流</li>
+<li>美食推荐</li>
+<li>观演专属服务</li>
+<li>用户画像与成长体系</li>
+<li>多人协同规划</li>
+</ul>
+<hr>
+<h2 id="四-项目需求分析">四、项目需求分析 </h2>
+<h3 id="41-总体需求">4.1 总体需求 </h3>
+<p>系统应满足以下总体要求：</p>
+<ol>
+<li>所有列出的功能均需要实现并支持演示；</li>
+<li>核心功能后必须能够对应到明确的数据结构和核心算法；</li>
+<li>核心算法需基于自己设计的数据结构进行实现；</li>
+<li>系统应体现真实可用性，而不是停留在理论层面；</li>
+<li>系统允许结合智能体辅助开发，但项目核心仍然是数据结构与算法实现。</li>
+</ol>
+<p><strong>【新增】4.1.1 数据规模要求</strong><br>
+为满足课程设计对真实数据规模的要求，本系统将：</p>
+<ul>
+<li><strong>景区与校园数量</strong>：总数 ≥ 200 个（覆盖多种类型，如自然景区、历史文化景区、高校校园等）；</li>
+<li><strong>内部设施数量</strong>：每个景区/校园内建筑物与服务设施总数 ≥ 50 个，种类不少于 10 种（包括景点、教学楼、宿舍楼、商店、饭店、洗手间、图书馆、食堂、超市、咖啡馆等）；</li>
+<li><strong>道路图规模</strong>：边数 ≥ 200 条，采用真实地图数据（如高德地图API或OpenStreetMap）构建，确保路线规划基于实际路网；</li>
+<li><strong>用户数量</strong>：系统用户数 ≥ 10 人（通过注册或预设测试账号实现，支持多用户数据隔离与交互）。</li>
+</ul>
+<p>数据来源优先采用开放地图数据与API，辅以人工标注，保证地图的真实性与可扩展性。</p>
+<h3 id="42-功能需求">4.2 功能需求 </h3>
+<h4 id="421-旅游推荐">4.2.1 旅游推荐 </h4>
+<p>系统能够根据用户选择的景点类别、学校类别、关键词、热度、评价和兴趣偏好，推荐符合需求的景点或学校。</p>
+<p>功能要求如下：</p>
+<ul>
+<li>用户可根据喜好选择不同景点和学校作为旅游目的地；</li>
+<li>系统在游览前推荐旅游景点和学校；</li>
+<li>推荐可以按照热度、评价和个人兴趣进行排序；</li>
+<li>用户可输入景点名称、学校名称、类别、关键字等信息进行查询；</li>
+<li>当结果较多时，可按照热度与评价排序；</li>
+<li>考虑到用户通常只看前若干结果，要求系统能高效输出前 10 个候选项，而不必每次完全排序全部数据。</li>
+</ul>
+<p><strong>对应核心算法：</strong></p>
+<ul>
+<li>查找算法</li>
+<li>排序算法</li>
+<li>Top-K 选择算法</li>
+</ul>
+<h4 id="422-旅游路线规划">4.2.2 旅游路线规划 </h4>
+<p>系统能够在景区、学校、建筑内部对用户从当前位置出发到目标地点的路线进行规划。</p>
+<p>功能要求如下：</p>
+<ul>
+<li>用户可输入单个目标景点或场所，系统规划最优路线；</li>
+<li>用户可输入多个目标点，系统规划经过多个点后返回起点的路线；</li>
+<li>系统应支持路线图展示与路径输出；</li>
+<li>系统支持不同路线规划策略，包括：
+<ul>
+<li>最短距离策略</li>
+<li>最短时间策略</li>
+<li>考虑拥挤度的最短时间策略</li>
+<li>基于交通工具约束的最短时间策略</li>
+<li>室内导航策略</li>
+</ul>
+</li>
+</ul>
+<p><strong>对应核心算法：</strong></p>
+<ul>
+<li>最短路径算法（Dijkstra，优先队列优化）</li>
+<li>多目标路径规划算法（状态压缩DP / 贪心近似）</li>
+<li>图搜索算法</li>
+</ul>
+<h4 id="423-场所查询">4.2.3 场所查询 </h4>
+<p>系统能够在景区或学校内部，围绕某个地点查找一定范围内的服务设施，并根据路径距离进行排序。</p>
+<p>功能要求如下：</p>
+<ul>
+<li>可选中某个景点或场所查找附近设施；</li>
+<li>可根据类别进行过滤；</li>
+<li>可输入类别名称查找对应设施；</li>
+<li>查询结果必须根据实际路径距离排序，不能简单依据直线距离。</li>
+</ul>
+<p><strong>对应核心算法：</strong></p>
+<ul>
+<li>查找算法</li>
+<li>图距离计算</li>
+<li>排序算法</li>
+</ul>
+<h4 id="424-旅游日记管理">4.2.4 旅游日记管理 </h4>
+<p>系统支持用户在旅游过程中或旅游结束后记录旅游日记，并对所有日记进行统一管理。</p>
+<p>功能要求如下：</p>
+<ul>
+<li>用户可使用文字、图片、视频等形式记录旅游内容；</li>
+<li>系统统一管理所有用户的旅游日记；</li>
+<li>用户可以浏览和评分其他用户的旅游日记；</li>
+<li>日记浏览量可作为热度指标；</li>
+<li>日记推荐可依据热度、评分和兴趣进行排序。</li>
+</ul>
+<p><strong>对应核心算法：</strong></p>
+<ul>
+<li>排序算法</li>
+<li>数据组织与管理结构</li>
+</ul>
+<h4 id="425-旅游日记交流">4.2.5 旅游日记交流 </h4>
+<p>系统支持对旅游日记进行查找、筛选、排序和全文检索。</p>
+<p>功能要求如下：</p>
+<ul>
+<li>用户输入旅游目的地后，可对相关旅游日记按热度和评分排序；</li>
+<li>用户可根据日记标题进行精确查找；</li>
+<li>用户可对日记正文内容进行全文检索；</li>
+<li>系统支持旅游日记的无损压缩存储；</li>
+<li>可结合图片、文字描述生成旅游动画或展示内容。</li>
+</ul>
+<p><strong>对应核心算法：</strong></p>
+<ul>
+<li>查找算法（哈希、KMP）</li>
+<li>排序算法</li>
+<li>文本搜索算法（倒排索引）</li>
+<li>无损压缩算法（Huffman编码）</li>
+</ul>
+<h4 id="426-美食推荐">4.2.6 美食推荐 </h4>
+<p>系统在用户选中景点或学校后，可根据用户需求推荐附近美食。</p>
+<p>功能要求如下：</p>
+<ul>
+<li>可以按热度、评价和距离排序；</li>
+<li>可以按菜系进行过滤；</li>
+<li>支持名称、菜系、店铺名称、窗口名称等模糊查询；</li>
+<li>当结果较多时支持高效排序与前若干结果输出。</li>
+</ul>
+<p><strong>对应核心算法：</strong></p>
+<ul>
+<li>模糊查找算法</li>
+<li>排序算法</li>
+<li>Top-K 选择算法</li>
+</ul>
+<h4 id="427-观演专属服务模块">4.2.7 观演专属服务模块 </h4>
+<p>系统围绕演唱会、音乐节等大型活动，提供以场馆为核心的专项服务，满足用户“看演出+游城市”的复合需求。</p>
+<p>功能要求如下：</p>
+<ul>
+<li>用户选定演出场馆后，系统自动整合场馆周边文旅资源，形成“观演前-观演中-观演后”的全链路推荐。</li>
+<li>基于场馆位置、演出主题及歌迷社群数据，推荐周边适合拍照、社交的打卡点，并支持按热度、距离排序。</li>
+<li>针对演出散场时段，推荐周边仍在营业、适合聚餐或夜宵的美食店铺，并结合交通拥堵情况提供最优前往路径。</li>
+<li>在路线规划中，除距离与时间外，新增“观演时间约束”（如开演前多久到达）与“散场拥堵成本”权重，系统自动计算最优出发时间与路线，帮助用户规避高峰人流。</li>
+</ul>
+<p><strong>对应核心算法：</strong></p>
+<ul>
+<li>图最短路径算法（多权重融合）</li>
+<li>排序算法</li>
+<li>时间窗口约束规划</li>
+<li>拥堵成本预测模型（可基于历史数据模拟）</li>
+</ul>
+<h4 id="428-用户个性化画像与旅游成长体系">4.2.8 用户个性化画像与旅游成长体系 </h4>
+<p>系统通过构建用户画像与成长机制，实现从“单次推荐”向“长期陪伴”的转变，增强用户持续使用意愿。</p>
+<p>功能要求如下：</p>
+<ul>
+<li>系统记录用户的兴趣标签、历史浏览记录、评分反馈等，构建多维用户画像，作为个性化推荐的基础。</li>
+<li>用户通过完成旅游任务（如发表日记、参与路线投票、打卡景点）获取经验值与等级提升。</li>
+<li>系统可制定年度回忆，根据用户旅游记录生成年度旅游动画等。</li>
+</ul>
+<p><strong>对应核心算法：</strong></p>
+<ul>
+<li>聚类算法（K-means）</li>
+<li>排序算法</li>
+<li>关联规则挖掘算法</li>
+<li>时序轨迹聚类+动态规划算法</li>
+</ul>
+<h4 id="429-协同路线规划与实时位置共享">4.2.9 协同路线规划与实时位置共享 </h4>
+<p>系统支持小队成员共同规划旅游路线，并在旅游过程中实现位置共享与动态调整，提升团队协作效率与安全性。</p>
+<p>功能要求如下：</p>
+<ul>
+<li>小队成员可分别提交个人待选清单；系统基于成员清单、个人偏好、路径连通性与时间约束，生成多套融合路线方案；</li>
+<li>支持小队成员对方案进行投票，系统自动选择最优方案或由队长确认执行。</li>
+<li>小队成员可开启实时位置共享，当有成员偏离已规划路线超过阈值时，系统自动向全体成员发送提醒；且支持“一键重新规划”功能，适配团队行进速度。</li>
+</ul>
+<p><strong>对应核心算法：</strong></p>
+<ul>
+<li>图最短路径算法</li>
+<li>多目标路径规划算法</li>
+<li>位置偏差检测算法</li>
+<li>投票机制与共识算法</li>
+</ul>
+<h3 id="43-非功能需求">4.3 非功能需求 </h3>
+<p>除功能完整性外，系统还应满足以下非功能要求：</p>
+<ol>
+<li><strong>响应效率要求</strong>：对于中小规模测试数据，普通查询、排序和推荐操作应在用户可接受时间内完成；路线规划与全文检索需保持稳定响应，避免明显卡顿。</li>
+<li><strong>正确性要求</strong>：所有推荐、路径、检索和压缩功能都应具备可验证的正确输出，尤其是最短路径结果、Top-K 结果和压缩解压一致性必须可复现。</li>
+<li><strong>可扩展性要求</strong>：系统应预留新增景点类别、扩展评价维度、加入新路线策略和新增检索字段的空间，便于后续继续开发。</li>
+<li><strong>可维护性要求</strong>：数据层、算法层、业务层与交互层应尽量解耦，方便按模块调试和替换算法实现。</li>
+<li><strong>可演示性要求</strong>：系统应准备典型测试数据和典型输入案例，保证课程验收时能够完整展示主要功能链路。</li>
+</ol>
+<hr>
+<p><strong>修订说明</strong>：</p>
+<ul>
+<li>在“项目特色”中，将三个特色功能与具体算法挂钩，体现课程设计主线。</li>
+<li>在“项目背景”中，新增了现有旅游系统的不足，呼应课程要求的“创新需求”。</li>
+<li>在“需求分析”中，新增了“4.1.1 数据规模要求”，明确量化数据规模，确保满足课程最低要求。</li>
+<li>对各模块的“对应核心算法”进行了细化，增加了算法实现方式的提示（如Dijkstra优先队列优化、状态压缩DP、倒排索引等）。</li>
+<li>修正了原文档中的格式问题（如项目特色编号、章节层级等）。</li>
+</ul>
+<p>以下是第五、六、七章的修订版，修改要点已用 <strong>【修改】</strong> 标注。</p>
+<hr>
+<h2 id="五-项目目标">五、项目目标 </h2>
+<p>本项目的总体目标是完成一个真实可用的个性化旅游系统，并通过系统实现体现数据结构课程的核心内容。</p>
+<p><strong>【修改】</strong> 细化目标，增加性能对比与数据规模承诺。</p>
+<p>具体目标如下：</p>
+<ol>
+<li>完成个性化旅游系统的需求分析、概要设计、详细设计、编码与测试；</li>
+<li>设计适用于旅游推荐、路线规划、场所查询和日记管理的核心数据结构；</li>
+<li>使用自定义数据结构实现查找、排序、图最短路径、文本搜索、压缩等核心算法，确保算法自实现比例不低于90%；</li>
+<li>对不同算法在不同数据规模（100、1000、10000条记录）下的性能进行比较，形成对比分析报告；</li>
+<li>利用智能体提高需求分析、模块分工、测试设计与文档生成效率；</li>
+<li>输出完整的课程设计项目书、系统说明书和演示材料，确保所有功能可演示、数据规模满足课程要求（景区+校园≥200个，道路边≥200条）。</li>
+</ol>
+<hr>
+<h2 id="六-系统总体设计">六、系统总体设计 </h2>
+<h3 id="61-系统定位">6.1 系统定位 </h3>
+<p>本系统定位为一个面向景区、校园、建筑内部等场景的<strong>个性化旅游服务系统</strong>。系统围绕用户在旅游前、中、后的关键需求展开，实现推荐、规划、查询、管理和交流等功能。</p>
+<h3 id="62-系统总体架构">6.2 系统总体架构 </h3>
+<p>系统总体上采用四层结构，各层职责明确，便于分工协作与模块替换。</p>
+<p><strong>【修改】</strong> 细化各层职责，增加数据流说明。</p>
+<h4 id="1数据层">（1）数据层 </h4>
+<p>负责管理景点、学校、场所、美食、道路、用户、旅游日记等数据。</p>
+<ul>
+<li>主要数据结构：顺序表存储POI信息、邻接表存储道路图、哈希表支持快速查找、倒排索引支持全文检索。</li>
+<li>数据来源：高德地图API / OpenStreetMap 真实数据，辅以人工标注。</li>
+</ul>
+<h4 id="2算法层">（2）算法层 </h4>
+<p>负责实现本系统的核心算法，所有算法均基于自定义数据结构实现：</p>
+<ul>
+<li>查找算法（顺序查找、二分查找、哈希查找）</li>
+<li>排序算法（快速排序、堆排序）</li>
+<li>Top-K 选择算法（小顶堆）</li>
+<li>最短路径算法（Dijkstra，优先队列优化）</li>
+<li>多目标路径规划（状态压缩DP / 贪心近似）</li>
+<li>模糊查询（前缀匹配、编辑距离）</li>
+<li>全文检索（倒排索引 + 字符串匹配）</li>
+<li>无损压缩（Huffman编码）</li>
+</ul>
+<h4 id="3业务层">（3）业务层 </h4>
+<p>负责封装具体业务逻辑，各模块调用算法层接口完成功能：</p>
+<ul>
+<li>旅游推荐模块</li>
+<li>路线规划模块</li>
+<li>场所查询模块</li>
+<li>日记管理模块</li>
+<li>日记交流模块</li>
+<li>美食推荐模块</li>
+<li>观演专属服务模块</li>
+<li>用户个性化画像与旅游成长体系模块</li>
+<li>多人协同路线规划与实时位置共享模块</li>
+</ul>
+<h4 id="4交互层">（4）交互层 </h4>
+<p>负责用户输入输出，包括：</p>
+<ul>
+<li>查询界面（支持文本输入与筛选）</li>
+<li>推荐结果展示（列表形式）</li>
+<li>路线可视化展示（基于Leaflet + OpenStreetMap）</li>
+<li>日记浏览界面（支持富文本展示）</li>
+<li>管理后台或命令行交互界面（便于测试与调试）</li>
+</ul>
+<p><strong>【修改】</strong> 补充数据流说明：</p>
+<blockquote>
+<p>数据流向：用户通过交互层输入查询条件 → 业务层调用算法层接口 → 算法层操作数据层结构 → 结果经业务层组装后返回交互层展示。各层之间通过接口解耦，便于单元测试与模块替换。</p>
+</blockquote>
+<h3 id="63-模块划分">6.3 模块划分 </h3>
+<p>系统可划分为以下九个主要模块：</p>
+<ol>
+<li>用户与偏好管理模块</li>
+<li>旅游推荐模块</li>
+<li>路线规划模块</li>
+<li>场所查询模块</li>
+<li>旅游日记管理与交流模块</li>
+<li>美食推荐模块</li>
+<li>观演专属服务模块</li>
+<li>用户个性化画像与旅游成长体系模块</li>
+<li>多人协同路线规划与实时位置共享模块</li>
+</ol>
+<p><strong>【修改】</strong> 补充模块间关系说明：</p>
+<blockquote>
+<p>各模块之间共享用户信息、POI数据和图结构数据。推荐模块给出候选目的地后，用户可继续使用路线规划、场所查询和美食推荐等功能；旅游结束后，日记管理模块负责保存和检索相关内容。观演服务模块依赖路线规划与美食推荐模块的接口；多人协同模块依赖用户模块与路线规划模块。这种分层依赖关系便于并行开发与集成测试。</p>
+</blockquote>
+<hr>
+<h2 id="七-核心数据结构设计">七、核心数据结构设计 </h2>
+<h3 id="71-基础实体数据结构">7.1 基础实体数据结构 </h3>
+<h4 id="711-景点--学校--场所--美食信息表">7.1.1 景点 / 学校 / 场所 / 美食信息表 </h4>
+<p>采用顺序表或动态数组存储，便于随机访问与排序。</p>
+<p>可定义如下字段：</p>
+<ul>
+<li>编号（唯一标识）</li>
+<li>名称（支持哈希查找）</li>
+<li>类别（景点/学校/设施/美食）</li>
+<li>标签（兴趣标签，如“历史”“摄影”“美食”）</li>
+<li>热度（浏览量或搜索量）</li>
+<li>评分（用户评分均值）</li>
+<li>所属区域（用于区域范围查询）</li>
+<li>关键字集合（用于模糊匹配）</li>
+</ul>
+<p><strong>【修改】</strong> 补充设计说明：</p>
+<blockquote>
+<p>在实现时，将这类对象抽象为统一的 <code>POI</code> 结构体，通过类别字段区分景点、学校、服务设施与美食店铺。这样可以减少重复定义，查找、排序和筛选时也更方便统一处理。所有POI存储于一个顺序表中，同时为名称、类别、区域分别建立哈希索引或分类索引，以提升查询效率。</p>
+</blockquote>
+<h4 id="712-用户信息结构">7.1.2 用户信息结构 </h4>
+<p>包含：</p>
+<ul>
+<li>用户编号</li>
+<li>用户名称</li>
+<li>兴趣标签（字符串数组或位标记集合）</li>
+<li>浏览历史（链表或顺序表）</li>
+<li>收藏记录（哈希集合）</li>
+<li>评分记录（映射表：POI编号→评分）</li>
+</ul>
+<p><strong>【修改】</strong> 补充设计说明：</p>
+<blockquote>
+<p>兴趣标签用于个性化推荐；浏览历史用于热度计算与画像更新；评分记录用于协同过滤推荐。该结构会被多个模块共同使用，因此设计为全局可访问的用户表。</p>
+</blockquote>
+<h4 id="713-旅游日记结构">7.1.3 旅游日记结构 </h4>
+<p>包含：</p>
+<ul>
+<li>日记编号</li>
+<li>标题</li>
+<li>作者（关联用户编号）</li>
+<li>目的地（关联POI编号）</li>
+<li>正文内容（原始文本）</li>
+<li>热度（浏览量）</li>
+<li>评分（均值）</li>
+<li>图片/视频链接（列表）</li>
+<li>压缩后文本信息（Huffman编码结果）</li>
+</ul>
+<p><strong>【修改】</strong> 补充设计说明：</p>
+<blockquote>
+<p>日记正文同时保留原始文本与压缩后文本，压缩算法用于节省存储空间，解压后可恢复原始内容供展示与检索。为支持全文检索，需为正文建立倒排索引。</p>
+</blockquote>
+<h4 id="714-观演场馆信息结构">7.1.4 观演场馆信息结构 </h4>
+<p>包含：</p>
+<ul>
+<li>场馆编号</li>
+<li>场馆名称</li>
+<li>坐标位置（经纬度）</li>
+<li>演出时间（时间窗口）</li>
+<li>散场时段（用于拥堵预测）</li>
+<li>周边拥堵系数（按时段存储的权重表）</li>
+<li>关联打卡点列表（POI编号列表）</li>
+<li>关联美食列表（POI编号列表）</li>
+</ul>
+<p><strong>【修改】</strong> 补充设计说明：</p>
+<blockquote>
+<p>拥堵系数存储在二维数组中，按“时段×方向”组织，用于路径规划时动态调整边权。演出时间与散场时段用于时间窗口约束规划。</p>
+</blockquote>
+<h4 id="715-用户画像信息结构">7.1.5 用户画像信息结构 </h4>
+<p>包含：</p>
+<ul>
+<li>用户编号</li>
+<li>兴趣标签向量（多维特征，如[历史0.3, 美食0.5, 摄影0.2]）</li>
+<li>聚类群体标识（K-means聚类结果）</li>
+<li>经验值（整数）</li>
+<li>当前等级（1-10级）</li>
+<li>成就徽章集合（列表）</li>
+<li>行为日志队列（最近N条行为记录）</li>
+</ul>
+<p><strong>【修改】</strong> 补充设计说明：</p>
+<blockquote>
+<p>兴趣标签向量通过用户行为动态更新；聚类群体标识用于群体推荐；行为日志队列用于时序分析（如年度回忆生成）。经验值与等级采用对数增长模型，前10次升级较快，后期放缓。</p>
+</blockquote>
+<h4 id="716-小队协作信息结构">7.1.6 小队协作信息结构 </h4>
+<p>包含：</p>
+<ul>
+<li>小队编号</li>
+<li>成员列表（用户编号列表）</li>
+<li>成员待选清单（映射表：用户→POI编号列表）</li>
+<li>融合路线方案集合（方案列表，每个方案包含路径序列与总分）</li>
+<li>投票记录（映射表：方案编号→票数）</li>
+<li>当前执行路线（路径节点序列）</li>
+<li>成员实时位置映射（用户编号→当前节点编号）</li>
+</ul>
+<p><strong>【修改】</strong> 补充设计说明：</p>
+<blockquote>
+<p>融合路线方案由算法层根据成员待选清单生成，投票采用多数决或队长裁决。位置共享通过轮询或推送方式更新，偏离检测基于当前节点与规划路径的最近距离阈值（默认50米）。</p>
+</blockquote>
+<h3 id="72-图结构设计">7.2 图结构设计 </h3>
+<p>对于路线规划、场所查询、室内导航等功能，采用图结构建模。</p>
+<h4 id="顶点">顶点 </h4>
+<p>表示：</p>
+<ul>
+<li>景点入口</li>
+<li>道路交叉口</li>
+<li>教学楼入口、电梯、房间</li>
+<li>服务设施位置</li>
+</ul>
+<h4 id="边">边 </h4>
+<p>表示可通行道路或连接关系，每条边包含：</p>
+<ul>
+<li>起点顶点编号</li>
+<li>终点顶点编号</li>
+<li>距离（米）</li>
+<li>理想通行时间（秒）</li>
+<li>允许交通工具（步行/自行车/电瓶车）</li>
+<li>分时段拥堵系数（默认1.0）</li>
+</ul>
+<h4 id="边权">边权 </h4>
+<p>根据不同策略可以表示：</p>
+<ul>
+<li>距离权 = 距离</li>
+<li>时间权 = 距离 / (理想速度 × 拥挤度)</li>
+<li>混合权 = α × 距离 + β × 时间（可配置）</li>
+</ul>
+<h4 id="图存储方式">图存储方式 </h4>
+<ul>
+<li><strong>景区和校园导航</strong>：优先采用<strong>邻接表</strong>。道路网络通常稀疏（顶点数n，边数约2n~5n），邻接表空间复杂度O(n+e)，遍历效率高。</li>
+<li><strong>室内小规模图</strong>：可采用<strong>邻接矩阵</strong>，便于判断两点连通性，实现简单。</li>
+</ul>
+<p><strong>【修改】</strong> 补充稀疏性分析与存储选择依据：</p>
+<blockquote>
+<p>景区和校园道路网络通常属于稀疏图，因此优先采用邻接表，既节省空间，也方便进行遍历。室内导航场景（如教学楼楼层内）顶点数较少（≤100），边数接近完全图，使用邻接矩阵可简化实现，查询时间复杂度O(1)。</p>
+</blockquote>
+<h3 id="73-查找与检索辅助结构">7.3 查找与检索辅助结构 </h3>
+<p>为提高查询效率，可设计以下结构：</p>
+<table>
+<thead>
+<tr>
+<th>结构名称</th>
+<th>用途</th>
+<th>实现方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>哈希表</td>
+<td>名称精确查找</td>
+<td>链地址法，键为名称字符串</td>
+</tr>
+<tr>
+<td>分类索引表</td>
+<td>按类别筛选</td>
+<td>数组或链表，每个类别存储POI编号列表</td>
+</tr>
+<tr>
+<td>倒排索引</td>
+<td>日记正文全文检索</td>
+<td>词项→文档ID列表，支持布尔查询</td>
+</tr>
+<tr>
+<td>堆结构</td>
+<td>Top-K 推荐</td>
+<td>小顶堆，维护前K个最高分</td>
+</tr>
+<tr>
+<td>前缀树（Trie）</td>
+<td>模糊匹配/自动补全</td>
+<td>节点存储字符与POI编号列表</td>
+</tr>
+</tbody>
+</table>
+<p><strong>【修改】</strong> 补充结构之间的关系：</p>
+<blockquote>
+<p>这些辅助结构主要用于提高查询效率。基础数据保存在顺序表（POI表）或图结构中，不同的业务场景再配合不同索引进行处理。例如：</p>
+<ul>
+<li>名称精确查找：先查哈希表获得POI编号，再访问顺序表获取详情</li>
+<li>全文检索：倒排索引返回日记ID列表，再按评分排序</li>
+<li>Top-K推荐：候选集通过分类索引筛选后，用堆结构取前K个</li>
+</ul>
+<p>所有辅助结构需与基础数据保持一致性，在数据更新时同步维护。</p>
+</blockquote>
+<hr>
+<p><strong>修订说明</strong>：</p>
+<ul>
+<li><strong>第五章</strong>：增加“算法自实现比例不低于90%”和“数据规模承诺”，使目标更可量化。</li>
+<li><strong>第六章</strong>：细化四层架构职责，增加数据流说明和模块间依赖关系，便于分工与集成。</li>
+<li><strong>第七章</strong>：
+<ul>
+<li>为基础数据结构补充设计说明，解释字段用途与关联。</li>
+<li>在图结构中增加边权计算公式、稀疏性分析，明确邻接表为主存储方式。</li>
+<li>将辅助结构改为表格形式，补充各结构之间的关系与一致性维护说明。</li>
+</ul>
+</li>
+</ul>
+<p>以下是第八章至结尾的修订版，修改要点已在文中标注。</p>
+<hr>
+<h2 id="八-核心算法设计">八、核心算法设计 </h2>
+<p><strong>【修改说明】</strong> 为每个算法补充时间复杂度、适用数据规模、实现要点及性能对比方案，新增8.11节统一对比。</p>
+<h3 id="81-旅游推荐算法">8.1 旅游推荐算法 </h3>
+<ul>
+<li><strong>功能</strong>：根据景点热度、评价和用户兴趣，为用户推荐景点或学校。</li>
+<li><strong>核心思路</strong>：筛选候选集 → 计算综合得分 → 输出前K个结果。</li>
+<li><strong>算法实现</strong>：
+<ul>
+<li>综合得分 = 兴趣匹配度 × α + 热度 × β + 评分 × γ，权重可配置。</li>
+<li>使用<strong>小顶堆</strong>维护Top-K，避免完全排序，时间复杂度O(N log K)。</li>
+<li>完全排序（快速排序）复杂度O(N log N)，适用于N较小场景。</li>
+</ul>
+</li>
+<li><strong>可比较方案</strong>：完全排序、小顶堆、快速选择（平均O(N)）。</li>
+<li><strong>数据规模</strong>：支持N≥2000条POI时，堆方案响应时间控制在50ms以内。</li>
+</ul>
+<h3 id="82-单目标最短路径算法">8.2 单目标最短路径算法 </h3>
+<ul>
+<li><strong>功能</strong>：从当前位置到目标点规划最优路径。</li>
+<li><strong>算法实现</strong>：
+<ul>
+<li>采用<strong>Dijkstra + 优先队列</strong>，时间复杂度O((V+E) log V)，V为顶点数，E为边数。</li>
+<li>边权支持距离、时间（考虑拥挤度）、多权重融合（距离+时间）。</li>
+<li>对于室内小规模图（V≤100），也可使用Floyd算法预处理，查询O(1)。</li>
+</ul>
+</li>
+<li><strong>策略支持</strong>：
+<ul>
+<li>最短距离：边权=距离</li>
+<li>最短时间：边权=距离/(理想速度×拥挤度)</li>
+<li>混合策略：边权=α×距离 + β×时间</li>
+</ul>
+</li>
+<li><strong>性能目标</strong>：V=500, E=2000时，单次Dijkstra &lt; 100ms。</li>
+</ul>
+<h3 id="83-多目标路径规划算法">8.3 多目标路径规划算法 </h3>
+<ul>
+<li><strong>功能</strong>：从起点出发，访问多个目标点并返回起点。</li>
+<li><strong>算法实现</strong>：
+<ul>
+<li>目标点数 ≤ 10：状态压缩DP，预处理任意两点最短路径，复杂度O(2^K × K^2)，K为目标点数。</li>
+<li>目标点数 &gt; 10：贪心近似（最近邻法），复杂度O(K^2)。</li>
+</ul>
+</li>
+<li><strong>说明</strong>：状态压缩DP保证最优解，贪心近似用于大K场景，可对比两者精度差异。</li>
+</ul>
+<h3 id="84-场所查询算法">8.4 场所查询算法 </h3>
+<ul>
+<li><strong>功能</strong>：查找某景点附近一定范围内的服务设施，按实际路径距离排序。</li>
+<li><strong>算法实现</strong>：
+<ul>
+<li>以起点为源点运行Dijkstra（或BFS），获取到所有顶点的最短距离。</li>
+<li>筛选出目标类别设施，按距离排序（可使用堆取Top-K）。</li>
+</ul>
+</li>
+<li><strong>特别说明</strong>：距离必须基于图路径，不能使用直线距离。</li>
+</ul>
+<h3 id="85-日记检索算法">8.5 日记检索算法 </h3>
+<ul>
+<li><strong>功能</strong>：支持标题精确/模糊查找、正文全文检索。</li>
+<li><strong>算法实现</strong>：
+<ul>
+<li>标题精确查找：哈希表，O(1)。</li>
+<li>标题模糊查找：KMP或前缀树，O(m+n)。</li>
+<li>正文全文检索：倒排索引，查询时合并词项文档列表，支持布尔查询。</li>
+</ul>
+</li>
+<li><strong>性能目标</strong>：10万篇日记，关键词检索响应 &lt; 200ms。</li>
+</ul>
+<h3 id="86-日记压缩算法">8.6 日记压缩算法 </h3>
+<ul>
+<li><strong>功能</strong>：对旅游日记进行无损压缩存储。</li>
+<li><strong>算法实现</strong>：Huffman编码，基于字符频率构建最优前缀码。</li>
+<li><strong>输出要求</strong>：
+<ul>
+<li>提供压缩前后大小对比。</li>
+<li>验证压缩解压一致性。</li>
+</ul>
+</li>
+<li><strong>预期压缩率</strong>：纯文本日记压缩率可达40%~60%。</li>
+</ul>
+<h3 id="87-美食推荐算法">8.7 美食推荐算法 </h3>
+<ul>
+<li><strong>功能</strong>：根据热度、评分、距离、菜系推荐美食。</li>
+<li><strong>算法实现</strong>：
+<ul>
+<li>综合得分 = 热度×α + 评分×β + (1/距离)×γ，距离归一化。</li>
+<li>分类索引 + 小顶堆取Top-K。</li>
+</ul>
+</li>
+<li><strong>模糊查询</strong>：支持名称/菜系/店铺名称的前缀匹配或编辑距离。</li>
+</ul>
+<h3 id="88-观演专属服务算法">8.8 观演专属服务算法 </h3>
+<ul>
+<li><strong>功能</strong>：围绕演唱会等提供专属推荐与路径规划。</li>
+<li><strong>算法实现</strong>：
+<ul>
+<li>多权重最短路径：边权 = 距离 + 拥堵成本（散场时段场馆周边权重提高50%）。</li>
+<li>时间窗口约束：确保开演前30分钟到达。</li>
+<li>散场后优先推荐近处夜间美食，按热度与距离排序。</li>
+</ul>
+</li>
+<li><strong>可选方案</strong>：可模拟不同拥堵系数对路径选择的影响。</li>
+</ul>
+<h3 id="89-用户画像与成长体系算法">8.9 用户画像与成长体系算法 </h3>
+<ul>
+<li><strong>功能</strong>：构建用户画像，建立等级成长体系。</li>
+<li><strong>算法实现</strong>：
+<ul>
+<li><strong>K-means聚类</strong>：对用户兴趣标签向量进行聚类，形成用户分群，用于群体推荐。</li>
+<li><strong>经验值累积模型</strong>：采用对数增长，等级=log2(经验值/100 + 1)，前10级升级快。</li>
+<li><strong>关联规则挖掘</strong>（Apriori）：从行为日志中发现“景点-美食”等关联模式。</li>
+</ul>
+</li>
+<li><strong>年度回忆</strong>：时序轨迹聚类 + 动态规划选取代表性时刻生成动画。</li>
+</ul>
+<h3 id="810-协同路线规划与位置共享算法">8.10 协同路线规划与位置共享算法 </h3>
+<ul>
+<li><strong>功能</strong>：小队成员共建路线，实时位置共享与偏离提醒。</li>
+<li><strong>算法实现</strong>：
+<ul>
+<li><strong>融合路线生成</strong>：收集成员待选清单，使用多源Dijkstra计算从起点到各清单点的最短路径，通过路径融合（如最小生成树近似）生成候选方案。</li>
+<li><strong>投票机制</strong>：多数决或队长裁决。</li>
+<li><strong>位置偏差检测</strong>：计算当前节点到规划路径的最短距离，超过阈值（默认50米）触发提醒。</li>
+<li><strong>动态重规划</strong>：以所有成员当前位置为起点，重新规划统一路线。</li>
+</ul>
+</li>
+<li><strong>复杂度</strong>：重规划时间复杂度与单源最短路径相同，支持实时触发。</li>
+</ul>
+<h3 id="811-算法性能对比方案">8.11 算法性能对比方案 </h3>
+<p><strong>【新增】</strong> 为体现算法选择与优化效果，将在不同数据规模下进行性能对比，结果纳入测试报告。</p>
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th>数据规模</th>
+<th>实现方案A</th>
+<th>实现方案B</th>
+<th>对比指标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Top-K推荐</td>
+<td>N=100,1000,10000</td>
+<td>完全排序</td>
+<td>小顶堆</td>
+<td>时间、内存</td>
+</tr>
+<tr>
+<td>最短路径</td>
+<td>V=100,500,1000</td>
+<td>Dijkstra</td>
+<td>Floyd（预计算）</td>
+<td>时间、空间</td>
+</tr>
+<tr>
+<td>全文检索</td>
+<td>文档数=1000,10000,100000</td>
+<td>顺序扫描</td>
+<td>倒排索引</td>
+<td>响应时间</td>
+</tr>
+<tr>
+<td>压缩</td>
+<td>文本长度=1KB,10KB,100KB</td>
+<td>Huffman</td>
+<td>其他（可选）</td>
+<td>压缩率、时间</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="九-智能体设计定义">九、智能体设计定义 </h2>
+<p>（本章内容相对完整，仅做微调，补充智能体与人工实现的边界说明。）</p>
+<p><strong>【修改】</strong> 在9.7节末尾增加：</p>
+<blockquote>
+<p>所有由智能体生成的代码框架、测试用例、文档初稿均需经过人工审核与修改，确保核心算法由学生自主实现，智能体不替代任何课程核心考核内容。</p>
+</blockquote>
+<hr>
+<h2 id="十-系统模块详细设计">十、系统模块详细设计 </h2>
+<p><strong>【修改】</strong> 为各模块补充接口定义与数据流说明。</p>
+<h3 id="101-旅游推荐模块">10.1 旅游推荐模块 </h3>
+<ul>
+<li><strong>输入</strong>：用户兴趣、筛选条件、K值。</li>
+<li><strong>输出</strong>：推荐列表（POI编号列表，含得分）。</li>
+<li><strong>接口</strong>：<code>recommend(user_id, filters, k)</code></li>
+<li><strong>数据流</strong>：调用算法层<code>top_k</code>函数，从POI表中筛选后堆排序。</li>
+</ul>
+<h3 id="102-路线规划模块">10.2 路线规划模块 </h3>
+<ul>
+<li><strong>输入</strong>：起点ID、终点ID/列表、策略参数。</li>
+<li><strong>输出</strong>：路径节点序列、总距离、总时间。</li>
+<li><strong>接口</strong>：<code>plan_route(start, end, strategy)</code></li>
+<li><strong>数据流</strong>：调用算法层Dijkstra或多目标DP，从图结构中获取边权。</li>
+</ul>
+<h3 id="103-场所查询模块">10.3 场所查询模块 </h3>
+<ul>
+<li><strong>输入</strong>：起点ID、设施类别、距离范围（可选）。</li>
+<li><strong>输出</strong>：设施列表（按距离排序）。</li>
+<li><strong>接口</strong>：<code>query_facilities(start, category, range)</code></li>
+<li><strong>数据流</strong>：从图结构计算距离，筛选后排序。</li>
+</ul>
+<h3 id="104-旅游日记管理与交流模块">10.4 旅游日记管理与交流模块 </h3>
+<ul>
+<li><strong>输入</strong>：日记对象（标题、正文等）、查询条件。</li>
+<li><strong>输出</strong>：日记列表、检索结果、压缩数据。</li>
+<li><strong>接口</strong>：<code>create_diary(diary)</code>, <code>search_diary(keyword)</code>, <code>compress(text)</code></li>
+<li><strong>数据流</strong>：日记数据存储于顺序表，倒排索引用于检索，压缩算法独立。</li>
+</ul>
+<h3 id="105-美食推荐模块">10.5 美食推荐模块 </h3>
+<ul>
+<li><strong>输入</strong>：当前位置、偏好（菜系、热度等）、K值。</li>
+<li><strong>输出</strong>：美食列表。</li>
+<li><strong>接口</strong>：<code>recommend_food(location, preferences, k)</code></li>
+<li><strong>数据流</strong>：从POI表中筛选美食类，计算距离得分，堆取Top-K。</li>
+</ul>
+<h3 id="106-观演专属服务模块">10.6 观演专属服务模块 </h3>
+<ul>
+<li><strong>输入</strong>：场馆ID、观演时间、用户偏好。</li>
+<li><strong>输出</strong>：打卡点推荐、散场美食推荐、带拥堵成本的路线。</li>
+<li><strong>接口</strong>：<code>concert_service(venue_id, show_time, user_prefs)</code></li>
+<li><strong>数据流</strong>：依赖路线规划模块和美食推荐模块，注入时间窗口与拥堵系数。</li>
+</ul>
+<h3 id="107-用户画像与成长体系模块">10.7 用户画像与成长体系模块 </h3>
+<ul>
+<li><strong>输入</strong>：用户行为日志。</li>
+<li><strong>输出</strong>：画像标签、等级、年度回忆。</li>
+<li><strong>接口</strong>：<code>update_profile(user_id, behavior)</code>, <code>get_level(user_id)</code></li>
+<li><strong>数据流</strong>：行为日志队列 → 聚类算法更新画像 → 经验值计算 → 等级更新。</li>
+</ul>
+<h3 id="108-多人协同模块">10.8 多人协同模块 </h3>
+<ul>
+<li><strong>输入</strong>：小队成员列表、各成员待选清单、实时位置。</li>
+<li><strong>输出</strong>：融合路线方案、投票结果、偏离提醒、重规划路线。</li>
+<li><strong>接口</strong>：<code>create_team(members)</code>, <code>submit_wishlist(user_id, list)</code>, <code>vote(plan_id)</code>, <code>get_shared_location(team_id)</code></li>
+<li><strong>数据流</strong>：成员清单 → 融合路线生成 → 投票 → 执行路线；位置共享 → 偏差检测 → 提醒/重规划。</li>
+</ul>
+<hr>
+<h2 id="十一-技术路线与开发计划">十一、技术路线与开发计划 </h2>
+<p><strong>【修改】</strong> 补充前端地图展示技术、版本管理规范，细化周任务。</p>
+<h3 id="111-技术路线">11.1 技术路线 </h3>
+<ul>
+<li><strong>编程语言</strong>：C++ / Java（核心算法与数据结构）；Python可选用于智能体脚本。</li>
+<li><strong>前端地图展示</strong>：使用<strong>Leaflet + OpenStreetMap</strong>，路径可视化通过GeoJSON绘制折线。</li>
+<li><strong>数据结构实现方式</strong>：核心结构与算法自主实现（图、堆、哈希表、倒排索引等）。</li>
+<li><strong>智能体辅助方式</strong>：用于需求分析、任务拆解、文档生成、测试设计和自然语言输入解析。</li>
+</ul>
+<h3 id="112-开发阶段安排细化周任务">11.2 开发阶段安排（细化周任务） </h3>
+<table>
+<thead>
+<tr>
+<th>周次</th>
+<th>任务</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第2周</td>
+<td>分组、需求分析，明确数据规模与功能</td>
+</tr>
+<tr>
+<td>第3周</td>
+<td>概要设计：架构、模块划分、数据结构设计</td>
+</tr>
+<tr>
+<td>第4周</td>
+<td>详细设计：接口定义、流程图、伪代码</td>
+</tr>
+<tr>
+<td>第5-6周</td>
+<td>基础编码：POI管理、图结构、推荐算法</td>
+</tr>
+<tr>
+<td>第7-8周</td>
+<td>核心算法编码：最短路径、多目标规划、全文检索</td>
+</tr>
+<tr>
+<td>第9周</td>
+<td>中期检查：演示基础功能</td>
+</tr>
+<tr>
+<td>第10-11周</td>
+<td>高级模块编码：观演服务、用户画像、多人协同</td>
+</tr>
+<tr>
+<td>第12周</td>
+<td>测试与性能对比：功能测试、算法对比、边界测试</td>
+</tr>
+<tr>
+<td>第13-14周</td>
+<td>文档整理、PPT制作、演示材料准备</td>
+</tr>
+<tr>
+<td>第15周</td>
+<td>验收</td>
+</tr>
+</tbody>
+</table>
+<h3 id="113-开发环境">11.3 开发环境 </h3>
+<p>（保持不变）</p>
+<h3 id="114-版本管理规范新增">11.4 版本管理规范（新增） </h3>
+<ul>
+<li>使用Git，分支策略：<code>main</code>为稳定版，<code>dev</code>为开发分支，功能分支命名<code>feature/模块名</code>。</li>
+<li>每次提交需附清晰注释，格式：<code>[模块] 简短描述</code>。</li>
+<li>每周至少一次合并到<code>dev</code>，验收前合并到<code>main</code>。</li>
+</ul>
+<hr>
+<h2 id="十二-测试计划">十二、测试计划 </h2>
+<p><strong>【修改】</strong> 补充性能对比表格模板。</p>
+<h3 id="121-功能测试">12.1 功能测试 </h3>
+<p>（保持原内容）</p>
+<h3 id="122-算法测试">12.2 算法测试 </h3>
+<p>（保持原内容，补充性能对比表格模板）</p>
+<table>
+<thead>
+<tr>
+<th>测试项</th>
+<th>数据规模</th>
+<th>指标</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Top-K推荐</td>
+<td>1000 POI</td>
+<td>完全排序耗时</td>
+<td>xx ms</td>
+</tr>
+<tr>
+<td>Top-K推荐</td>
+<td>1000 POI</td>
+<td>小顶堆耗时</td>
+<td>xx ms</td>
+</tr>
+<tr>
+<td>Dijkstra</td>
+<td>500顶点, 2000边</td>
+<td>单次查询</td>
+<td>xx ms</td>
+</tr>
+<tr>
+<td>全文检索</td>
+<td>1万篇日记</td>
+<td>响应时间</td>
+<td>xx ms</td>
+</tr>
+<tr>
+<td>Huffman压缩</td>
+<td>10KB文本</td>
+<td>压缩率</td>
+<td>xx%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="123-边界测试">12.3 边界测试 </h3>
+<p>（保持原内容）</p>
+<h3 id="124-测试评价指标">12.4 测试评价指标 </h3>
+<p>（保持原内容）</p>
+<hr>
+<h2 id="十三-项目创新点与特色">十三、项目创新点与特色 </h2>
+<p>（保持原内容）</p>
+<hr>
+<h2 id="十四-可行性分析">十四、可行性分析 </h2>
+<p>（保持原内容）</p>
+<hr>
+<h2 id="十五-预期成果">十五、预期成果 </h2>
+<p>（保持原内容）</p>
+<hr>
+<h2 id="十六-成员分工安排">十六、成员分工安排 </h2>
+<p><strong>【修改】</strong> 调整章节编号（原有两个十六，改为十六成员分工，十七总结），并细化分工对应智能体角色。</p>
+<table>
+<thead>
+<tr>
+<th>成员</th>
+<th>职责</th>
+<th>智能体角色</th>
+<th>核心算法</th>
+<th>业务模块</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>李腾</td>
+<td>系统架构</td>
+<td>系统设计智能体</td>
+<td>Dijkstra、状态压缩DP、图结构</td>
+<td>路线规划模块、场所查询模块</td>
+</tr>
+<tr>
+<td>胡天任</td>
+<td>算法工程</td>
+<td>算法辅助智能体、测试智能体</td>
+<td>Top-K、Huffman压缩、模糊查找</td>
+<td>旅游推荐、美食推荐、多人协同模块</td>
+</tr>
+<tr>
+<td>宦琳琳</td>
+<td>全栈开发</td>
+<td>需求分析、开发协作、文档展示智能体</td>
+<td>全文检索、K-means聚类、时间窗口规划</td>
+<td>观演服务、用户画像、日记管理、日记交流、前端界面</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="十七-总结">十七、总结 </h2>
+<p><strong>【修改】</strong> 原为“十六、总结”，现改为第十七章。</p>
+<p>本项目围绕“个性化旅游系统的设计与实现”展开，既具有明确的实际应用场景，又能够完整映射到数据结构课程中的查找、排序、图、字符串、压缩等核心内容。项目通过自主设计数据结构并实现核心算法，体现课程设计的学术要求与工程实践能力。</p>
+<p>同时，本项目引入“TourDS-Agent 旅游数据结构协同智能体组”，用于辅助需求分析、任务分解、系统设计、测试与文档生成，使项目开发过程更具协作性、条理性和完整性。最终，本项目将形成一个兼具课程价值、展示价值与实际应用价值的综合性系统。</p>
+<hr>
+<p><strong>修订说明</strong>：</p>
+<ul>
+<li>第八章：为每个算法补充实现细节、时间复杂度、性能目标，新增8.11节统一对比方案。</li>
+<li>第九章：微调，明确智能体与人工实现边界。</li>
+<li>第十章：为模块补充接口定义与数据流。</li>
+<li>第十一章：细化周任务、补充版本管理规范。</li>
+<li>第十二章：补充性能对比表格模板。</li>
+<li>第十六章：修正章节编号，细化分工与智能体角色对应。</li>
+<li>第十七章：原总结章节重新编号。</li>
+</ul>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

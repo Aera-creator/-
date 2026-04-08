@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>旅迹 Atlas - 首页</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="home">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">A</span>
+        <div>
+          <h1>旅迹 Atlas</h1>
+          <p>个性化旅游系统</p>
+        </div>
+      </div>
+      <div class="account">
+        <span class="avatar">AL</span>
+        <div><b>Aera Lin</b><span>普通会员 · Lv.3</span></div>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="side-title">系统模块</div>
+        <nav class="nav">
+          <a href="./index.html" data-page="home">首页</a>
+          <a href="./recommend.html" data-page="recommend">发现目的地</a>
+          <a href="./route.html" data-page="route">行程规划</a>
+          <a href="./facility.html" data-page="facility">周边服务</a>
+          <a href="./diary.html" data-page="diary">游记社区</a>
+          <a href="./food.html" data-page="food">附近美食</a>
+          <a href="./concert.html" data-page="concert">演出行程</a>
+          <a href="./team.html" data-page="team">同行小队</a>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <section class="page-hero home-hero">
+          <div>
+            <p class="hero-kicker">首页</p>
+            <h2>把计划、出发、记录和同行放在一条顺手的路径里</h2>
+            <p class="sub">先确定今天要做什么，再进入对应模块完成操作。首页只负责分发，不把复杂表单堆在第一屏。</p>
+          </div>
+          <div class="hero-actions">
+            <a href="./recommend.html" class="hero-link">先找目的地</a>
+            <a href="./route.html" class="hero-link">直接做行程</a>
+            <a href="./account.html" class="hero-link ghost-link">管理账户</a>
+          </div>
+        </section>
+
+        <section class="page-card">
+          <div class="panel-head">
+            <div>
+              <h3>系统概览</h3>
+              <p class="subtle">当前可用的数据与功能状态</p>
+            </div>
+          </div>
+          <div id="home-stats" class="grid-3"></div>
+        </section>
+
+        <section class="page-card">
+          <div class="panel-head">
+            <div>
+              <h3>常用入口</h3>
+              <p class="subtle">适合从首页直接开始的高频任务</p>
+            </div>
+          </div>
+          <div class="action-grid">
+            <a href="./recommend.html" class="action-tile">
+              <b>发现目的地</b>
+              <p>先选城市、景点或出游风格</p>
+            </a>
+            <a href="./route.html" class="action-tile">
+              <b>行程规划</b>
+              <p>快速生成单点导航或多点串联</p>
+            </a>
+            <a href="./concert.html" class="action-tile">
+              <b>演出行程</b>
+              <p>围绕演出日安排打卡、散场和聚餐</p>
+            </a>
+            <a href="./team.html" class="action-tile">
+              <b>同行小队</b>
+              <p>查看成员状态并统一下一步路线</p>
+            </a>
+            <a href="./diary.html" class="action-tile">
+              <b>游记社区</b>
+              <p>写下旅程记录或看看别人的体验</p>
+            </a>
+            <a href="./account.html" class="action-tile">
+              <b>账户中心</b>
+              <p>管理资料、偏好、安全设置和旅行档案</p>
+            </a>
+          </div>
+        </section>
+
+        <section class="page-card">
+          <div class="panel-head">
+            <div>
+              <h3>推荐使用顺序</h3>
+              <p class="subtle">从首页发散到模块，再回到下一步动作</p>
+            </div>
+          </div>
+          <div class="journey-grid">
+            <div class="journey-card">
+              <span class="journey-step">01</span>
+              <b>决定去哪里</b>
+              <p>在“发现目的地”里按兴趣和场景筛选候选地点。</p>
+              <a href="./recommend.html">进入发现目的地</a>
+            </div>
+            <div class="journey-card">
+              <span class="journey-step">02</span>
+              <b>安排当天路线</b>
+              <p>在“行程规划”里确定出发点、停留点和路线强度。</p>
+              <a href="./route.html">进入行程规划</a>
+            </div>
+            <div class="journey-card">
+              <span class="journey-step">03</span>
+              <b>补全沿途服务</b>
+              <p>用“周边服务”和“附近美食”补齐途中所需。</p>
+              <a href="./facility.html">查看周边服务</a>
+            </div>
+            <div class="journey-card">
+              <span class="journey-step">04</span>
+              <b>出行后沉淀记录</b>
+              <p>在“游记社区”里存草稿、发内容、继续找灵感。</p>
+              <a href="./diary.html">进入游记社区</a>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="./src/ui/pages.js"></script>
+  </body>
+</html>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>周边服务</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="facility">
+    <header class="topbar"><div class="brand"><span class="brand-mark">A</span><div><h1>旅迹 Atlas</h1><p>个性化旅游系统</p></div></div><div class="account"><span class="avatar">AL</span><div><b>Aera Lin</b><span>普通会员 · Lv.3</span></div></div></header>
+    <div class="layout">
+      <aside class="sidebar"><div class="side-title">系统模块</div><nav class="nav"><a href="./index.html" data-page="home">首页</a><a href="./recommend.html" data-page="recommend">发现目的地</a><a href="./route.html" data-page="route">行程规划</a><a href="./facility.html" data-page="facility">周边服务</a><a href="./diary.html" data-page="diary">游记社区</a><a href="./food.html" data-page="food">附近美食</a><a href="./concert.html" data-page="concert">演出行程</a><a href="./team.html" data-page="team">同行小队</a></nav></aside>
+      <main class="content">
+        <section class="page-hero module-hero facility-hero">
+          <div>
+            <p class="hero-kicker">周边服务</p>
+            <h2>在路上需要什么，就在当前位置附近马上找到什么</h2>
+            <p class="sub">这个模块的任务非常明确，只解决途中“补给、卫生间、医疗帮助”等即时问题，所以界面要更直接、更少干扰。</p>
+          </div>
+          <div class="hero-meta">
+            <span class="meta-chip">便民设施</span>
+            <span class="meta-chip">距离排序</span>
+            <span class="meta-chip">地图点位</span>
+          </div>
+        </section>
+
+        <nav class="local-nav">
+          <a href="#service-search" class="section-link">快速查找</a>
+          <a href="#service-results" class="section-link">服务结果</a>
+          <a href="#service-map" class="section-link">周边地图</a>
+        </nav>
+
+        <div class="workspace-grid">
+          <div class="workspace-main stack">
+            <section id="service-search" class="panel-card">
+              <div class="panel-head"><div><h3>快速查找</h3><p class="subtle">先选常见服务类型，再按步行范围筛选。</p></div></div>
+              <div class="quick-filter" id="facility-quick-tags">
+                <button type="button" class="ghost chip-btn" data-category="卫生间">卫生间</button>
+                <button type="button" class="ghost chip-btn" data-category="超市">便利补给</button>
+                <button type="button" class="ghost chip-btn" data-category="医疗">医疗帮助</button>
+              </div>
+              <div class="field-grid two-col">
+                <label class="field"><span>当前位置</span><input id="facility-origin" value="杭州西湖" /></label>
+                <label class="field"><span>服务类型</span><input id="facility-category" placeholder="类别关键词" /></label>
+              </div>
+              <div class="field-grid two-col">
+                <label class="field range-field"><span>步行范围：<b><span id="facility-range-label">5</span> km</b></span><input id="facility-range" type="range" min="1" max="15" value="5" /></label>
+                <div class="field action-field"><span>执行</span><button id="run-facility">查找周边</button></div>
+              </div>
+            </section>
+
+            <section id="service-results" class="panel-card">
+              <div class="panel-head"><div><h3>服务结果</h3><p class="subtle">按可达距离排序，适合途中快速判断。</p></div></div>
+              <div id="facility-output" class="result empty-state"><p>搜索后，这里会出现按距离排序的设施列表。</p></div>
+            </section>
+
+            <section id="service-map" class="panel-card">
+              <div class="panel-head"><div><h3>周边地图</h3><p class="subtle">方便确认设施大致分布与相对位置。</p></div></div>
+              <div id="facility-map-canvas" class="map-canvas"></div>
+              <div id="facility-map-info" class="result compact-result"></div>
+            </section>
+          </div>
+
+          <aside class="workspace-side stack">
+            <section class="panel-card accent-card">
+              <div class="panel-head"><div><h3>途中常见需求</h3><p class="subtle">出行里最容易临时打开的场景</p></div></div>
+              <div class="mini-list">
+                <div class="mini-card"><b>短暂停留</b><p>优先看卫生间、便利补给和休息点。</p></div>
+                <div class="mini-card"><b>突发不适</b><p>优先查医疗帮助，再决定是否调整路线。</p></div>
+                <div class="mini-card"><b>需要补给</b><p>找超市、便利站和游客服务点最快。</p></div>
+              </div>
+            </section>
+
+            <section class="panel-card">
+              <div class="panel-head"><div><h3>相关页面</h3><p class="subtle">周边服务往往和这些模块联动</p></div></div>
+              <div class="action-grid single-col">
+                <a href="./route.html" class="action-tile small"><b>返回行程规划</b><p>调整路线，把服务点一起考虑进去。</p></a>
+                <a href="./food.html" class="action-tile small"><b>查看附近美食</b><p>顺路补上用餐安排。</p></a>
+              </div>
+            </section>
+          </aside>
+        </div>
+      </main>
+    </div>
+    <script type="module" src="./src/ui/pages.js"></script>
+  </body>
+</html>

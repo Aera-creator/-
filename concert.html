@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>演出行程</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="concert">
+    <header class="topbar"><div class="brand"><span class="brand-mark">A</span><div><h1>旅迹 Atlas</h1><p>个性化旅游系统</p></div></div><div class="account"><span class="avatar">AL</span><div><b>Aera Lin</b><span>普通会员 · Lv.3</span></div></div></header>
+    <div class="layout">
+      <aside class="sidebar"><div class="side-title">系统模块</div><nav class="nav"><a href="./index.html" data-page="home">首页</a><a href="./recommend.html" data-page="recommend">发现目的地</a><a href="./route.html" data-page="route">行程规划</a><a href="./facility.html" data-page="facility">周边服务</a><a href="./diary.html" data-page="diary">游记社区</a><a href="./food.html" data-page="food">附近美食</a><a href="./concert.html" data-page="concert">演出行程</a><a href="./team.html" data-page="team">同行小队</a></nav></aside>
+      <main class="content">
+        <section class="page-hero module-hero concert-hero">
+          <div>
+            <p class="hero-kicker">演出行程</p>
+            <h2>围绕一场演出，把出发、打卡、散场和聚餐串成同一天的完整安排</h2>
+            <p class="sub">这个模块本质上是场景化路线页，所以既要保留地图，也要用时间段思维组织信息。</p>
+          </div>
+          <div class="hero-meta">
+            <span class="meta-chip">演出前</span>
+            <span class="meta-chip">散场后</span>
+            <span class="meta-chip">地图联动</span>
+          </div>
+        </section>
+
+        <nav class="local-nav">
+          <a href="#concert-plan" class="section-link">行程设置</a>
+          <a href="#concert-results" class="section-link">行程建议</a>
+          <a href="#concert-map" class="section-link">演出地图</a>
+        </nav>
+
+        <div class="workspace-grid">
+          <div class="workspace-main stack">
+            <section id="concert-plan" class="panel-card">
+              <div class="panel-head"><div><h3>行程设置</h3><p class="subtle">输入场馆和预留时间，快速生成当天方案。</p></div></div>
+              <div class="field-grid two-col">
+                <label class="field"><span>演出场馆</span><input id="concert-venue" value="虹馆Live" /></label>
+                <label class="field"><span>至少提前多久出发（分钟）</span><input id="concert-time-limit" type="number" value="40" /></label>
+              </div>
+              <div class="switch-list card-switches">
+                <label><input type="checkbox" checked /> 演出前打卡</label>
+                <label><input type="checkbox" checked /> 散场后聚餐</label>
+                <label><input type="checkbox" checked /> 尽量避开人流</label>
+              </div>
+              <div class="panel-actions"><button id="run-concert">生成行程</button></div>
+            </section>
+
+            <section id="concert-results" class="panel-card">
+              <div class="panel-head"><div><h3>行程建议</h3><p class="subtle">会综合展示出发建议、打卡点和聚餐点。</p></div></div>
+              <div id="concert-output" class="result empty-state"><p>生成后，这里会显示适合演出当天直接执行的建议方案。</p></div>
+            </section>
+
+            <section id="concert-map" class="panel-card">
+              <div class="panel-head"><div><h3>演出地图</h3><p class="subtle">围绕场馆展示当天活动动线。</p></div></div>
+              <div id="concert-map-canvas" class="map-canvas"></div>
+              <div id="concert-map-info" class="result compact-result"></div>
+            </section>
+          </div>
+
+          <aside class="workspace-side stack">
+            <section class="panel-card accent-card">
+              <div class="panel-head"><div><h3>当天节奏</h3><p class="subtle">更适合演出场景的阅读方式</p></div></div>
+              <ul class="timeline-mini">
+                <li>出发前确认检票信息和到场时间。</li>
+                <li>演出前只安排 1 至 2 个打卡点，避免赶场。</li>
+                <li>散场后优先看错峰路线和附近夜宵。</li>
+              </ul>
+            </section>
+
+            <section class="panel-card">
+              <div class="panel-head"><div><h3>可以继续做什么</h3><p class="subtle">演出行程常用的后续入口</p></div></div>
+              <div class="action-grid single-col">
+                <a href="./food.html" class="action-tile small"><b>单独看美食</b><p>想细挑聚餐地点时更适合切过去。</p></a>
+                <a href="./team.html" class="action-tile small"><b>同步给同行小队</b><p>让所有人看同一条路线。</p></a>
+              </div>
+            </section>
+          </aside>
+        </div>
+      </main>
+    </div>
+    <script type="module" src="./src/ui/pages.js"></script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+.DS_Store
+Thumbs.db
+.agents/
+.vscode/
+.idea/
+*.log
+dist/
+coverage/
+node_modules/
